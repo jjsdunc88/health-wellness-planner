@@ -2,6 +2,11 @@ const { Tech, Matchup } = require('../models');
 
 const resolvers = {
   Query: {
+      test: async () => {
+        return {
+          message: "It's working!"
+        }
+      },
     tech: async () => {
       return Tech.find({});
     },

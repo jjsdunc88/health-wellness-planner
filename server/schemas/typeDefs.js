@@ -1,5 +1,9 @@
 const typeDefs = `
-  type Tech {
+type Message {
+  message: String!
+}
+
+type Tech {
     _id: ID!
     name: String!
   }
@@ -13,6 +17,7 @@ const typeDefs = `
   }
 
   type Query {
+    test: Message
     tech: [Tech]
     matchups(_id: String): [Matchup]
   }
