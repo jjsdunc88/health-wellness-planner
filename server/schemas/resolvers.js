@@ -2,6 +2,7 @@ const { Tech, Matchup } = require('../models');
 const OpenAI = require('openai');
 require('dotenv').config();
 
+
 const openai = new OpenAI({
   apiKey: process.env.CHAT_API_KEY,
 });  
@@ -20,12 +21,18 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Matchup.find(params);
     },
-    chat: async () => {
+    chat: async (parent, { message }) => {
       const chatCompletion = await openai.chat.completions.create({
-        messages: [{ role: "user", content: "Say this is a test" }],
+        messages: [
+          { "role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
+          {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
+          {"role": "user", "content": `${message}`},
+        ],
+
+
         model: "gpt-3.5-turbo",      
       });
-      console.log(chatCompletion);
+      console.log(JSON.stringify(chatCompletion, null, 2));
       return {
         message: "working"
       }
