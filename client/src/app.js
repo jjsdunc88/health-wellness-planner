@@ -7,7 +7,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 
 function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState('LandingPage');
     // const [login, setLogin] = useState(false);
     // const [signup, setSignup] = useState(false);
     
