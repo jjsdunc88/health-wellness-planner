@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Login() {
     const [username, setUsername] = useState('')
@@ -7,9 +7,9 @@ function Login() {
         <div id='logIn'>
             <h2>Login</h2>
             <form>
-                <label for='username'>Username: </label>
+                <label htmlFor='username'>Username: </label>
                 <input type='text' id='username' name='username' onChange={(e) => setUsername(e.target.value)}/>
-                <label for='password'>Password: </label>
+                <label htmlFor='password'>Password: </label>
                 <input type='password' id='password' name='password' onChange={(e) => setPassword(e.target.value)}/>
                 <input type='submit' value='Submit' />
             </form>

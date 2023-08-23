@@ -5,7 +5,7 @@ function Header(props) {
     return (
         <header>
             <h1>Catalyst Coach</h1>
-            <Nav setUser={props.setUser} />
+            <Nav setPage={props.setPage} />
         </header>
     );
 }

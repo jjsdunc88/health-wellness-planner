@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
     return (
         <footer>
-            <p>© 2021 Catalyst Coach</p>
+            <p>© 2023 Catalyst Coach</p>
         </footer>
     );
 }
