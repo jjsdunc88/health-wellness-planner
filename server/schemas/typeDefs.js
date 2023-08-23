@@ -20,7 +20,7 @@ type Tech {
     test: Message
     tech: [Tech]
     matchups(_id: String): [Matchup]
-    chat: Message
+    chat(message: String!): Message
   }
 
 
