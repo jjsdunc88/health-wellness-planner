@@ -1,4 +1,6 @@
 const { Tech, Matchup } = require('../models');
+const OpenAI = require('openai');
+require('dotenv').config();
 
 const resolvers = {
   Query: {
@@ -14,6 +16,15 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Matchup.find(params);
     },
+    chat: async () => {
+    const openai = new OpenAI({
+      apiKey: process.env.REACT_APP_API_KEY,
+  });  
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: "Say this is a test" }],
+      model: "gpt-3.5-turbo",
+  });
+},  
   },
   Mutation: {
     createMatchup: async (parent, args) => {
