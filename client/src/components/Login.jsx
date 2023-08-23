@@ -7,11 +7,15 @@ function Login() {
         <div id='logIn'>
             <h2>Login</h2>
             <form>
+                <div className="formInputGroup">
                 <label htmlFor='username'>Username: </label>
                 <input type='text' id='username' name='username' onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className='formInputGroup'>
                 <label htmlFor='password'>Password: </label>
                 <input type='password' id='password' name='password' onChange={(e) => setPassword(e.target.value)}/>
-                <input type='submit' value='Submit' />
+                </div>
+                <input type='submit' value='Submit' className='submitBtn'/>
             </form>
         </div>
     );
