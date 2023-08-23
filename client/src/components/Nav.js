@@ -2,10 +2,12 @@ import React from "react";
 
 function Nav(props) {
     return (
-        <nav>
+        <ul id='navBar'>
             <button onClick={() => props.setUser('Fitness')}>Fitness</button>
             <button onClick={() => props.setUser('Login')}>Login</button>
             <button onClick={() => props.setUser('SignUp')}>Sign Up</button>
-        </nav>
+        </ul>
     );
 }
+
+export default Nav;
