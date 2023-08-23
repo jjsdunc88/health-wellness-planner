@@ -20,7 +20,9 @@ type Tech {
     test: Message
     tech: [Tech]
     matchups(_id: String): [Matchup]
+    chat: Message
   }
+
 
   type Mutation {
     createMatchup(tech1: String!, tech2: String!): Matchup
