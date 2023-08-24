@@ -34,7 +34,7 @@ const resolvers = {
       });
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-       message: JSON.stringify(chatCompletion.choices[0].message)
+       message: JSON.stringify(chatCompletion.choices[0].message.content)
       }
 },  
   },
