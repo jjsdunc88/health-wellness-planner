@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client';
 
+export const MUTATION_MESSAGE = gql`
+mutation Chat2($message: String!) {
+  chat2(message: $message) {
+    message
+  }
+}
+`;
+
 // export const CREATE_MATCHUP = gql`
 //   mutation createMatchup($tech1: String!, $tech2: String!) {
 //     createMatchup(tech1: $tech1, tech2: $tech2) {
