@@ -34,7 +34,7 @@ const resolvers = {
       });
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-        message: "working"
+       message: JSON.stringify(chatCompletion.choices[0].message)
       }
 },  
   },
