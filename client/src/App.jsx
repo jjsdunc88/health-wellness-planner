@@ -5,6 +5,8 @@ import './App.css'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import Message from './components/Message';
 import {setContext} from '@apollo/client/link/context';
+import MacroButton from './components/MacroButton';
+import MacroButton2 from './components/MacroButton2'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,7 +33,9 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Message />
+      {/* <Message /> */}
+      {/* <MacroButton /> */}
+      <MacroButton2 />
       
     </ApolloProvider>
   )
