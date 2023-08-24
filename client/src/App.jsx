@@ -7,6 +7,12 @@ import Message from './components/Message';
 import {setContext} from '@apollo/client/link/context';
 import MacroButton from './components/MacroButton';
 import MacroButton2 from './components/MacroButton2'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Fitness from './components/Fitness';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import LandingPage from './components/LandingPage';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -27,31 +33,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-import './App.css';
-import React, { useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Fitness from './components/Fitness';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import LandingPage from './components/LandingPage';
 
 function App() {
- 
-
+  const [page, setPage] = useState('LandingPage');
+  // const [login, setLogin] = useState(false);
+  // const [signup, setSignup] = useState(false);
   return (
     <ApolloProvider client={client}>
-      {/* <Message /> */}
-      {/* <MacroButton /> */}
-      <MacroButton2 />
-      
-    </ApolloProvider>
-  )
-    const [page, setPage] = useState('LandingPage');
-    // const [login, setLogin] = useState(false);
-    // const [signup, setSignup] = useState(false);
-    
-    return (
         <div className="App">
         {/* <Header user={user} setPage={setPage} setLogin={setLogin} setSignup={setSignup} /> */}
         <Header setPage={setPage} />
@@ -66,7 +54,12 @@ function App() {
         </div>
         <Footer />
         </div>
-    );
+      {/* <Message /> */}
+      {/* <MacroButton /> */}
+      <MacroButton2 />
+      
+    </ApolloProvider>
+  )
 }
 
 export default App;
