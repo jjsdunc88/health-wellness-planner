@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_MESSAGE = gql`
-query Excellent {
-  test {
+query Chat($message: String!) {
+  chat(message: $message) {
     message
   }
 }

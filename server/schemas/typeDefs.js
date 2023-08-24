@@ -23,10 +23,10 @@ type Tech {
     chat(message: String!): Message
   }
 
-
   type Mutation {
     createMatchup(tech1: String!, tech2: String!): Matchup
     createVote(_id: String!, techNum: Int!): Matchup
+    chat2(message: String!): Message
   }
 `;
 

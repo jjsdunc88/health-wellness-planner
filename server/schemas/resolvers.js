@@ -24,17 +24,18 @@ const resolvers = {
     chat: async (parent, { message }) => {
       const chatCompletion = await openai.chat.completions.create({
         messages: [
-          { "role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
+          {"role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
           {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
           {"role": "user", "content": `${message}`},
         ],
-
-
+        //add macrobutton prompts here
+        
+        
         model: "gpt-3.5-turbo",      
       });
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-        message: "working"
+       message: JSON.stringify(chatCompletion.choices[0].message.content)
       }
 },  
   },
@@ -51,6 +52,23 @@ const resolvers = {
       );
       return vote;
     },
+    chat2: async (parent, { message }) => {
+      const chatCompletion = await openai.chat.completions.create({
+        messages: [
+          {"role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
+          {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
+          {"role": "user", "content": `${message}`},
+        ],
+        //add macrobutton prompts here
+        
+        
+        model: "gpt-3.5-turbo",      
+      });
+      console.log(JSON.stringify(chatCompletion, null, 2));
+      return {
+       message: JSON.stringify(chatCompletion.choices[0].message.content)
+      }
+},  
   },
 };
 
