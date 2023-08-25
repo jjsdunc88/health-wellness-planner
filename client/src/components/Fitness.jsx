@@ -8,7 +8,7 @@ function Fitness() {
             <h3>This is 6 months into Catalyst Coach</h3>
         
             <img src={strongCat} alt="Strong Cat" width="500" height="600" />
-        
+            
         </div>
     );
 }
