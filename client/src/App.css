@@ -100,3 +100,18 @@ form {
 .formInputGroup input {
   width: 60%;
 }
+
+.navBtn {
+  display: block;
+  border-radius: 10px;
+  background: lightgray;
+  padding: 7px 10px;
+}
+
+#navBar {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center;
+  width: 100%;
+  height: 100%; */
+}
