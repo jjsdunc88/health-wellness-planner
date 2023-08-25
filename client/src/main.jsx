@@ -10,6 +10,7 @@ import App from './App.jsx'
 import HomePage from './pages/HomePage';
 import Error from './pages/Error';
 import SignupPage from './pages/SignupPage';
+import NutritionPage from './pages/NutritionPage'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignupPage />
+      },
+      {
+        path: '/nutrition',
+        element: <NutritionPage />
       }
     ]
   }

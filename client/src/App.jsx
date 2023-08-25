@@ -55,10 +55,6 @@ function App() {
             { page === 'LandingPage' && <LandingPage />}
         </div> */}
         <Outlet />
-        <div>
-          <MacroButton2 />
-          <MealPlanButton />
-        </div>
         <Footer />
         </div>
       {/* <Message /> */}
