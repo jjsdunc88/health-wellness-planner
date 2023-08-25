@@ -5,7 +5,7 @@ import './App.css'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import Message from './components/Message';
 import {setContext} from '@apollo/client/link/context';
-import MacroButton from './components/MacroButton';
+// import MacroButton from './components/MacroButton';
 import MacroButton2 from './components/MacroButton2'
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,6 +13,7 @@ import Fitness from './components/Fitness';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import LandingPage from './components/LandingPage';
+import MealPlanButton from './components/MealPlanButton';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -57,6 +58,7 @@ function App() {
       {/* <Message /> */}
       {/* <MacroButton /> */}
       <MacroButton2 />
+      <MealPlanButton />
       
     </ApolloProvider>
   )
