@@ -14,6 +14,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import LandingPage from './components/LandingPage';
 import MealPlanButton from './components/MealPlanButton';
+import { Outlet } from 'react-router-dom';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -47,18 +48,22 @@ function App() {
         {/* {login ? <Login setPage={setPage} setLogin={setLogin} /> : null}
         {signup ? <SignUp setPage={setPage} setSignup={setSignup} /> : null}
         <Fitness user={user} /> */}
-        <div id='main'>
+        {/* <div id='main'>
             { page === 'Fitness' && <Fitness /> }
             { page === 'Login' && <Login /> }
             { page === 'SignUp' && <SignUp /> }
             { page === 'LandingPage' && <LandingPage />}
+        </div> */}
+        <Outlet />
+        <div>
+          <MacroButton2 />
+          <MealPlanButton />
         </div>
         <Footer />
         </div>
       {/* <Message /> */}
       {/* <MacroButton /> */}
-      <MacroButton2 />
-      <MealPlanButton />
+      
       
     </ApolloProvider>
   )

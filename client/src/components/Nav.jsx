@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Nav(props) {
     return (
         <ul id='navBar'>
-            <button onClick={() => props.setPage('Fitness')}>Fitness</button>
-            <button onClick={() => props.setPage('Login')}>Login</button>
-            <button onClick={() => props.setPage('SignUp')}>Sign Up</button>
+            <Link to="/fitness">Fitness</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
         </ul>
     );
 }

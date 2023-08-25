@@ -4,15 +4,15 @@ import {MUTATION_MESSAGE} from '../utils/mutations';
 //import {profileData} from login info from database
 
 //used to test the prompt
-const profileData = [
-  {'age': 25},
-  {'height': 72},
-  {'weight': 180},
-  {'gender': 'male'},
-  {'activity': 'moderate'},
-  {'goal': ' weight loss'},
-  {'diet': 'no restrictions'},
-];
+const profileData = {
+  'age': 25,
+  'height': 72,
+  'weight': 180,
+  'gender': 'male',
+  'activity': 'moderate',
+  'goal': ' weight loss',
+  'diet': 'no restrictions',
+};
 
 const MacroButton2 = (props) => {
     const [response, setResponse] = useState('');
