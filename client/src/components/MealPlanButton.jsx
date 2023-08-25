@@ -32,9 +32,7 @@ const MealPlanButton = (props) => {
     <div>
     <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
     <section className="message">
-        <ul>{response.split("\n\n").map(item => {
-            return <li key={item}>{item}</li>
-        })}</ul>
+        <pre>{response}</pre>
     </section>
     </div>
   )
