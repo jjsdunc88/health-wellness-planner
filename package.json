@@ -15,9 +15,13 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0",
-    "react-error-overlay": "^6.0.9"
+    "google-fonts-webpack-plugin": "^0.4.4",
+    "react-error-overlay": "^6.0.9",
+    "vite-plugin-fonts": "^0.7.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "openai": "^4.1.0"
   }
 }

@@ -5,12 +5,13 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-
+// import Nav from './components/Nav'
 import App from './App.jsx'
 import HomePage from './pages/HomePage';
 import Error from './pages/Error';
 import SignupPage from './pages/SignupPage';
 import NutritionPage from './pages/NutritionPage'
+import LoginPage from './pages/LoginPage'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,15 @@ const router = createBrowserRouter([
       {
         path: '/nutrition',
         element: <NutritionPage />
-      }
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
+      // {
+      //   path: '/Nav',
+      //   element: <Nav />
+      // }
     ]
   }
 ]);
