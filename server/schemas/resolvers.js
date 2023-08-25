@@ -55,6 +55,7 @@ const resolvers = {
       return vote;
     },
     chat2: async (parent, { message }) => {
+      console.log(message);
       const chatCompletion = await openai.chat.completions.create({
         messages: [
           { "role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
