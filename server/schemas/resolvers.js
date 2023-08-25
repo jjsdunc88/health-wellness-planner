@@ -3,17 +3,19 @@ const OpenAI = require('openai');
 require('dotenv').config();
 
 
+
+
 const openai = new OpenAI({
   apiKey: process.env.CHAT_API_KEY,
-});  
+});
 
 const resolvers = {
   Query: {
-      test: async () => {
-        return {
-          message: "It's working!"
-        }
-      },
+    test: async () => {
+      return {
+        message: "It's working!"
+      }
+    },
     tech: async () => {
       return Tech.find({});
     },
@@ -21,23 +23,23 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return Matchup.find(params);
     },
-    chat: async (parent, { message }) => {
-      const chatCompletion = await openai.chat.completions.create({
-        messages: [
-          {"role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
-          {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
-          {"role": "user", "content": `${message}`},
-        ],
-        //add macrobutton prompts here
-        
-        
-        model: "gpt-3.5-turbo",      
-      });
-      console.log(JSON.stringify(chatCompletion, null, 2));
-      return {
-       message: JSON.stringify(chatCompletion.choices[0].message.content)
-      }
-},  
+    //     chat: async (parent, { message }) => {
+    //       const chatCompletion = await openai.chat.completions.create({
+    //         messages: [
+    //           {"role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
+    //           {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
+    //           {"role": "user", "content": `${message}`},
+    //         ],
+    //         //add macrobutton prompts here
+
+
+    //         model: "gpt-3.5-turbo",      
+    //       });
+    //       console.log(JSON.stringify(chatCompletion, null, 2));
+    //       return {
+    //        message: JSON.stringify(chatCompletion.choices[0].message.content)
+    //       }
+    // },  
   },
   Mutation: {
     createMatchup: async (parent, args) => {
@@ -55,21 +57,35 @@ const resolvers = {
     chat2: async (parent, { message }) => {
       const chatCompletion = await openai.chat.completions.create({
         messages: [
-          {"role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
-          {"role": "system", "content": "Before we begin, I need to ask you a few questions."},
-          {"role": "user", "content": `${message}`},
+          { "role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
+          { "role": "system", "content": "Before we begin, I need to ask you a few questions." },
+          { "role": "user", "content": `${message}` },
+          { "role": "system", "content": "What would you like me to do based off your profile data?" },
         ],
-        //add macrobutton prompts here
-        
-        
-        model: "gpt-3.5-turbo",      
-      });
+
+        model: "gpt-3.5-turbo",
+
+      })
+      // link button to backend
+      
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-       message: JSON.stringify(chatCompletion.choices[0].message.content)
+        message: JSON.stringify(chatCompletion.choices[0].message.content)
       }
-},  
+    },
   },
 };
 
 module.exports = resolvers;
+
+
+// const button = chatCompletion.messages;
+//       if (button === "MealPlanButton") {
+//         messages.push({ "role": "user", "content": `${message}` })
+//         } else
+//         if (button === "WorkoutButton") {
+//           messages.push({ "role": "user", "content": `${message}` })
+//         } else
+//           {
+//         messages.push({ "role": "user", "content": `${message}` })
+//         }
