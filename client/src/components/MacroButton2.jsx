@@ -33,7 +33,7 @@ const MacroButton2 = (props) => {
     <div>
     <button onClick={handleButtonClick}>Calculate Macros</button>
     <section className="message">
-        <h1>{response}</h1>
+        <p>{response}</p>
     </section>
     </div>
   )

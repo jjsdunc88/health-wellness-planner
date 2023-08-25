@@ -71,22 +71,10 @@ const resolvers = {
       
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-        message: JSON.stringify(chatCompletion.choices[0].message.content)
+        message: chatCompletion.choices[0].message.content
       }
     },
   },
 };
 
 module.exports = resolvers;
-
-
-// const button = chatCompletion.messages;
-//       if (button === "MealPlanButton") {
-//         messages.push({ "role": "user", "content": `${message}` })
-//         } else
-//         if (button === "WorkoutButton") {
-//           messages.push({ "role": "user", "content": `${message}` })
-//         } else
-//           {
-//         messages.push({ "role": "user", "content": `${message}` })
-//         }
