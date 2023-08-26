@@ -41,8 +41,8 @@ type Query {
 }
 
 type Mutation {
-  login(email: String!, password: String!): Auth
   signUp(username: String!, email: String!, password: String!): Auth
+  login(email: String!, password: String!): Auth
   chat2(input: ProfileInput!): Message
 }
 `;

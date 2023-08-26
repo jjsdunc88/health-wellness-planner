@@ -1,9 +1,15 @@
 const { User, Profile, Message } = require('../models');
 const auth = require('../utils/auth');
+const axios = require('axios');
 const OpenAI = require('openai');
 require('dotenv').config();
 
-
+const isLoggedIn = (context) => {
+  if (context && context.hasOwnProperty('user') && context.user.hasOwnProperty('_id')) {
+    return true;
+  }
+  return false;
+}
 
 
 
@@ -13,6 +19,17 @@ const openai = new OpenAI({
 
 const resolvers = {
   Query: {
+    me: async (parent, { }, context) => {
+      if (!isLoggedIn(context)) {
+        throw new Error('Not logged in');
+      }
+      const id = context.user._id;
+      let user = await User.findById(id);
+      user = user.toObject();
+
+      console.log(user);
+      return user;
+    },
     // chat: async (parent, { message }) => {
     //   const chatCompletion = await openai.chat.completions.create({
     //     messages: [
@@ -32,6 +49,26 @@ const resolvers = {
     // },
   },
   Mutation: {
+    signUp: async (parent, { username, email, password }, context) => {
+      const user = await User.create({ username, email, password });
+      const token = auth.signToken(user);
+      return { token, user };
+    },
+    login: async (parent, { email, password }, context) => {
+      if (email) {
+        const user = await User.findOne( { email });
+        if (!user) {
+          throw new Error('Error: No user found with this email address');
+        }
+        const correctPw = await user.isCorrectPassword(password);
+        if (!correctPw) {
+          throw new Error('Incorrect login credentials')
+        }
+        const token = auth.signToken(user);
+        return { token, user };
+      }
+      throw new Error('Error: No user found with this email address');
+    },
     chat2: async (parent, { message }) => {
       console.log(message);
       const chatCompletion = await openai.chat.completions.create({
