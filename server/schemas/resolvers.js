@@ -1,4 +1,4 @@
-const { User, Profile, Message } = require('../models');
+const { User, Message } = require('../models');
 const auth = require('../utils/auth');
 const axios = require('axios');
 const OpenAI = require('openai');
