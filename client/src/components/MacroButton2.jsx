@@ -20,7 +20,7 @@ const profileData = {
 
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
-    
+
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
