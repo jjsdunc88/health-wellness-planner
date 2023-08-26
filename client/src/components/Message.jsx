@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 
-import {QUERY_MESSAGE} from '../utils/queries';
+import {QUERY_CHAT} from '../utils/queries';
 
 function Message(props){
-  const { loading, data } = useQuery(QUERY_MESSAGE, {
+  const { loading, data } = useQuery(QUERY_CHAT, {
 variables:{message:"Can you calculate my macros?"}
   });
 

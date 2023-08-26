@@ -26,7 +26,7 @@ mutation Login($email: String!, $password: String!) {
 }
 `;
 
-export const MUTATION_MESSAGE = gql`
+export const MUTATION_CHAT2 = gql`
 mutation Chat2($message: String!) {
   chat2(message: $message) {
     message

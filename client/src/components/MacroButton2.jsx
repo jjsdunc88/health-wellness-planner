@@ -5,7 +5,7 @@ import {
   CalculateButton2,
   MessageSection2,
 } from "../styled-components/MacroButton2-Style";
-import { MUTATION_MESSAGE } from "../utils/mutations";
+import { MUTATION_CHAT2 } from "../utils/mutations";
 
 // Used to test the prompt
 const profileData = {
@@ -21,7 +21,7 @@ const profileData = {
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
     
-  const [chat2, { error }] = useMutation(MUTATION_MESSAGE);
+  const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
     event.preventDefault();

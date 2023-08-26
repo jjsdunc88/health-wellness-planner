@@ -6,7 +6,7 @@ import {
   CalculateMealPlanButton,
   MealPlanMessageSection,
 } from "../styled-components/MealPlanButton-Style";
-import { MUTATION_MESSAGE } from "../utils/mutations";
+import { MUTATION_CHAT2 } from "../utils/mutations";
 
 // Used to test the prompt
 const profileData = {
@@ -22,7 +22,7 @@ const profileData = {
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
 
-  const [chat2, { error }] = useMutation(MUTATION_MESSAGE);
+  const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
