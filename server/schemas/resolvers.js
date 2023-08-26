@@ -1,6 +1,8 @@
-const { Tech, Matchup } = require('../models');
+const { User, Profile, Message } = require('../models');
+const auth = require('../utils/auth');
 const OpenAI = require('openai');
 require('dotenv').config();
+
 
 
 
