@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { NavContainer, NavButton } from "../styled-components/Nav-Style";
 
 function Nav(props) {
     return (
-        <ul id='navBar'>
-            <Link to="/nutrition" className="navBtn">Nutrition Page</Link>
-            <Link to="/login" className="navBtn">Login</Link>
-            <Link to="/signup" className="navBtn">Signup</Link>
-        </ul>
+        <NavContainer>
+            <NavButton href="/nutrition">Nutrition Page</NavButton>
+            <NavButton href="/login">Login</NavButton>
+            <NavButton href="/signup">Signup</NavButton>
+        </NavContainer>
     );
 }
 

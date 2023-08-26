@@ -4,11 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import Message from './components/Message';
-import {setContext} from '@apollo/client/link/context';
-// import MacroButton from './components/MacroButton';
+import { setContext } from '@apollo/client/link/context';
 import MacroButton2 from './components/MacroButton2'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Nav from './components/Nav';
 import Fitness from './components/Fitness';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -35,15 +35,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
   const [page, setPage] = useState('LandingPage');
   // const [login, setLogin] = useState(false);
   // const [signup, setSignup] = useState(false);
+
   return (
     <ApolloProvider client={client}>
-        <div className="App">
-        {/* <Header user={user} setPage={setPage} setLogin={setLogin} setSignup={setSignup} /> */}
+      <div className="App">
         <Header setPage={setPage} />
         {/* {login ? <Login setPage={setPage} setLogin={setLogin} /> : null}
         {signup ? <SignUp setPage={setPage} setSignup={setSignup} /> : null}
@@ -54,13 +53,12 @@ function App() {
             { page === 'SignUp' && <SignUp /> }
             { page === 'LandingPage' && <LandingPage />}
         </div> */}
+        {/* <Nav /> */}
         <Outlet />
         <Footer />
-        </div>
+      </div>
       {/* <Message /> */}
       {/* <MacroButton /> */}
-      
-      
     </ApolloProvider>
   )
 }
