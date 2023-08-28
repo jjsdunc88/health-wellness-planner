@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -5,11 +6,10 @@
 }
 
 .App {
-  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 }
 
 header {
@@ -22,14 +22,16 @@ header {
   padding: 0 20px;
 }
 
-button {
-  padding: 10px 20px;
-  margin: 0 10px;
-}
-
 h2 {
   text-align: center;
   margin: 20px 0;
+  font-size: 36px;
+  font-family: 'Russo One', sans-serif; 
+  transition: transform 0.3s ease; 
+}
+
+h2:hover {
+  transform: scale(1.1);
 }
 h3 {
   text-align: center;
@@ -37,13 +39,13 @@ h3 {
 }
 
 #main {
-  min-height: calc(100vh - 120px);
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 70%;
+  padding-bottom: 60px;
 }
-
 #landingPage {
   
   display: flex;
@@ -74,6 +76,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed; 
+  bottom: 0;
 }
 
 .submitBtn {
