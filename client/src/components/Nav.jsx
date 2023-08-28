@@ -14,7 +14,6 @@ function Nav(props) {
                     <NavContainer>
                         <NavButton href="/nutrition">Nutrition Page</NavButton>
                         <button onClick={logout}> Logout </button>
-                        <NavButton href="/signup">Signup</NavButton>
                     </NavContainer>
                 </>
             ) : (
