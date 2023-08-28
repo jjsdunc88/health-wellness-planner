@@ -21,6 +21,7 @@ export default function SignUp() {
   });
 
   const [signUp, { error }] = useMutation(MUTATION_SIGNUP);
+  const [validated] = useState(false);
 
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -57,7 +58,7 @@ export default function SignUp() {
   return (
     <SignUpContainer>
       <h2>Sign Up</h2>
-      <SignUpForm onSubmit={handleFormSubmit}>
+      <SignUpForm onSubmit={handleFormSubmit} noValidate validated={validated}>
         <FormInputGroup>
           <FormLabel htmlFor='username'>Username: </FormLabel>
           <FormInput type='text' id='username' name='username' onChange={handleChange} />
