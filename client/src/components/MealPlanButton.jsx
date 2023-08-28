@@ -28,14 +28,44 @@ const MealPlanButton = (props) => {
     setResponse(data.chat2.message);
   }
 
-  return (
-    <div>
-    <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
-    <section className="message">
-        <pre>{response}</pre>
+  // return (
+  //   <div>
+  //   <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
+  //   <section className="message">
+  //       <pre>{response}</pre>
+  //   </section>
+  //   </div>
+  // );
+    return (
+      <section className="message">
+      {response ? (
+        <ul>{response.split("\n\n").map(item => {
+            return <li key={item}>{item}</li>
+        })}</ul>
+      )
+      : (
+        <div>Loading</div>
+      )
+      }
     </section>
-    </div>
-  )
+  );
+  // return (
+  //   <div id="modal-1" class="jw-modal" style={{
+  //     "display": "block",
+  //     "position": "fixed",
+  //     "z-index": "10000",
+  //     "backgroundColor": "rgba(0, 0, 0, .75)",
+  //     "width": "300px",
+  //     "height": "300px",
+  //     "top": "50%",
+  //     "left": "50%",
+  //     "transform": "translate(-50%, -50%)"
+  //   }}>
+  //     <div class="jw-modal-body" style={{"margin": "auto", "width":"50%"}}>
+  //       <h1 style={{"textAlign": "center"}}>Loading...</h1>
+  //     </div>
+  //   </div>
+  // )
 }
 
 export default MealPlanButton;
