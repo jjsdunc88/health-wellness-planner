@@ -41,7 +41,7 @@ const MacroButton2 = (props) => {
         Calculate Macros
       </CalculateButton2>
       <MessageSection2 className="message">
-        <p>{response}</p>
+        <pre>{response}</pre>
       </MessageSection2>
     </MacroButton2Container>
   );

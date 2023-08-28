@@ -39,9 +39,7 @@ const MealPlanButton = (props) => {
       <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
       <section className="message">
         {response ? (
-          <ul>{response.split("\n\n").map(item => {
-            return <li key={item}>{item}</li>
-          })}</ul>
+          <pre>{response}</pre>
         )
           : (
             <div id="modal-1" class="jw-modal" style={{
