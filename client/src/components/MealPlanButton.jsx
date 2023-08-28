@@ -36,12 +36,35 @@ const MealPlanButton = (props) => {
 
   return (
     <div>
-    <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
-    <section className="message">
-        <pre>{response}</pre>
-    </section>
+      <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
+      <section className="message">
+        {response ? (
+          <ul>{response.split("\n\n").map(item => {
+            return <li key={item}>{item}</li>
+          })}</ul>
+        )
+          : (
+            <div id="modal-1" class="jw-modal" style={{
+              "display": "block",
+              "position": "fixed",
+              "z-index": "10000",
+              "backgroundColor": "rgba(0, 0, 0, .75)",
+              "width": "300px",
+              "height": "300px",
+              "top": "50%",
+              "left": "50%",
+              "transform": "translate(-50%, -50%)"
+            }}>
+              <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
+                <h1 style={{ "textAlign": "center" }}>Loading...</h1>
+              </div>
+            </div>)
+        }
+      </section>;
     </div>
-  )
- }
+  );
+}
+
+
 
 export default MealPlanButton;
