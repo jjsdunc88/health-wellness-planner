@@ -34,14 +34,14 @@ const MealPlanButton = (props) => {
     setResponse(data.chat2.message);
   };
 
-//   return (
-//     <div>
-//     <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
-//     <section className="message">
-//         <pre>{response}</pre>
-//     </section>
-//     </div>
-//   )
+  return (
+    <div>
+    <button onClick={handleButtonClick}>Calculate 7-Day Meal Plan</button>
+    <section className="message">
+        <pre>{response}</pre>
+    </section>
+    </div>
+  )
  }
 
 export default MealPlanButton;
