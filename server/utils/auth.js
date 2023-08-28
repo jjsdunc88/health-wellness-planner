@@ -1,3 +1,4 @@
+const { GraphQLError } = require('graphql');
 const tokenizer = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -12,32 +13,33 @@ if (process.env.TOKEN_SECRET && process.env.TOKEN_SECRET.length > 3) {
 }
 
 module.exports = {
-    contextTokenizer: ({ request: req, contextValue }) => {
-        const header = req.http.headers.get('authorization') || req.http.headers.get('Authorization');
-        let token = req.http.body.token || header;
+    AuthenicationError: new GraphQLError('Could not authenticate user.', {
+        extensions: {
+            code: 'UNAUTHENTICATED',
+        },
+    }),
+    authMiddleware: function ({ req }) {
+        let token = req.body.token || req.query.token || req.headers.authorization;
 
-        if (header) {
+        if (req.headers.authorization) {
             token = token.split(' ').pop().trim();
         }
         if (!token) {
-            return false;
+            return req;
         }
 
         try {
             const {data} = tokenizer.verify(token, secret, { maxAge: expiration });
-            if (data) {
-                contextValue.user = data;
-            }
-            return data;
-        } catch(err) {
-            console.log(err);
-            console.log('contextTokenizer: invalid token');
+            req.user = data
+        } catch {
+            console.log('Invalid token');
         }
-        return false;
+        return req;
     },
-    signToken: ({username, email, _id}) => {
-        return tokenizer.sign({ data: { username, email, _id } }, secret, {expiresIn: expiration});
-    }
+    signToken: function ({username, email, _id}) {
+        const payload = { username, email, _id};
+        return tokenizer.sign({ data: payload }, secret, {expiresIn: expiration});
+    },
 };
 
 
