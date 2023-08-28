@@ -4,7 +4,25 @@ export const LandingPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 75vh;
+  min-height: 20vh;
+  background: linear-gradient(to bottom, lightgrey, white);
+  padding-top: 10px;
+  margin: 200px auto;
+  border-radius: 50%;
+  width: 50vh;
+  height: 30vh;
+  @media (max-width: 768px) {
+    margin: 220px auto;
+    padding: 15px;
+  }
+`;
+
+export const VideoBackground = styled.video`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 `;
 
 export const WelcomeContainer = styled.div`
@@ -36,11 +54,11 @@ export const StartButton = styled.button`
   &:hover {
     background-color: #555;
   }
-  
+
   @media (max-width: 768px) {
-    font-size: 14px; 
+    font-size: 14px;
   }
-  
+
   @media (max-width: 480px) {
     font-size: 12px;
   }
