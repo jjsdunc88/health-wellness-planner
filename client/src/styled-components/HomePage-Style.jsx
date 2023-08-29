@@ -1,5 +1,31 @@
 import styled from '@emotion/styled';
 
+export const StyledNavButton = styled.a`
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; 
+  font-family: 'Russo One', sans-serif;
+
+  &:hover {
+    background-color: #555;
+    transform: scale(2.2);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    transform: scale(0.5);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+`;
 export const LandingPageContainer = styled.div`
   display: flex;
   justify-content: center;

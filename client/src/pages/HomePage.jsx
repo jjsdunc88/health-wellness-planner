@@ -5,9 +5,8 @@ import {
   WelcomeContainer,
   WelcomeHeading,
   WelcomeQuote,
-  StartButton,
+  StyledNavButton,
 } from "../styled-components/HomePage-Style";
-import { NavContainer, NavButton } from "../styled-components/Nav-Style";
 import landingVideo from "../assets/landing-video.mp4";
 
 function HomePage() {
@@ -21,7 +20,7 @@ function HomePage() {
         <WelcomeQuote>
           "Strong people are harder to kill than weak people, and more useful in general"
         </WelcomeQuote>
-        <NavButton href="/preview"> Get Started</NavButton>
+        <StyledNavButton href="/preview">Get Started</StyledNavButton>
       </WelcomeContainer>
     </LandingPageContainer>
   );

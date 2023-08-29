@@ -7,7 +7,7 @@ import Nav from './Nav';
 function Header(props) {
   return (
     <HeaderContainer>
-      <StyledLink as={Link} to="/">Catalyst Coach</StyledLink>
+      <StyledLink as={Link} to="/">CATALYST COACH</StyledLink>
       <Nav setPage={props.setPage} />
     </HeaderContainer>
   );
