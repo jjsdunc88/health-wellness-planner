@@ -26,11 +26,13 @@ const MealPlanButton = (props) => {
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
+    document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {
         message: `Based on the macros from my ${JSON.stringify(profileData)}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`,
       },
     });
+    document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.message);
   };
 
@@ -43,7 +45,7 @@ const MealPlanButton = (props) => {
         )
           : (
             <div id="modal-1" class="jw-modal" style={{
-              "display": "block",
+              "display": "none",
               "position": "fixed",
               "z-index": "10000",
               "backgroundColor": "rgba(0, 0, 0, .75)",
@@ -58,7 +60,7 @@ const MealPlanButton = (props) => {
               </div>
             </div>)
         }
-      </section>;
+      </section>
     </div>
   );
 }

@@ -25,6 +25,7 @@ const MacroButton2 = (props) => {
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
+    document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {
         message: `I am a ${profileData.age} years old. I am a ${profileData.gender} that weighs ${profileData.weight} pounds and I am ${profileData.height} inches tall. I have ${profileData.diet} diet and I have a ${profileData.activity} exercise level. This is my ${profileData.goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`,
@@ -32,6 +33,7 @@ const MacroButton2 = (props) => {
     });
     // console.log(message);
     // setResponse(JSON.stringify(data));
+    document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.message);
   };
 
@@ -44,7 +46,7 @@ const MacroButton2 = (props) => {
           )
           : (
           <div id="modal-1" class="jw-modal" style={{
-            "display": "block",
+            "display": "none",
             "position": "fixed",
             "z-index": "10000",
             "backgroundColor": "rgba(0, 0, 0, .75)",
