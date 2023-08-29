@@ -6,13 +6,14 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // import Nav from './components/Nav'
-import App from './App.jsx'
+import App from './App.jsx';
 import HomePage from './pages/HomePage';
 import Error from './pages/Error';
 import SignupPage from './pages/SignupPage';
-import NutritionPage from './pages/NutritionPage'
-import LoginPage from './pages/LoginPage'
-import PreviewPage from './pages/PreviewPage'
+import NutritionPage from './pages/NutritionPage';
+import LoginPage from './pages/LoginPage';
+import PreviewPage from './pages/PreviewPage';
+import ProfileDataPage from './pages/ProfileDataPage';
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignupPage />
       },
+      {
+        path: '/profile',
+        element: <ProfileDataPage />
+      }
       {
         path: '/nutrition',
         element: <NutritionPage />

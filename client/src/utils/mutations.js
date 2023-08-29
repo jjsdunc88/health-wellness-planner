@@ -26,6 +26,23 @@ mutation Login($email: String!, $password: String!) {
 }
 `;
 
+export const MUTATION_PROFILEDATA = gql`
+mutation Profile($age: Number!, $height: Number!, $weight: Number!, $gender: String!, $activity: String!, $goal: String!, $diet: String!) {
+  token
+  user {
+    _id
+    username
+    age
+    height
+    weight
+    gender
+    activity
+    goal
+    diet
+  }
+}
+`;
+
 export const MUTATION_CHAT2 = gql`
 mutation Chat2($message: String!) {
   chat2(message: $message) {

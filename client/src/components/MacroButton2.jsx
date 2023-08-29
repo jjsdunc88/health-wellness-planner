@@ -24,7 +24,9 @@ const MacroButton2 = (props) => {
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
+
     event.preventDefault();
+    //query profile data from database
     document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {

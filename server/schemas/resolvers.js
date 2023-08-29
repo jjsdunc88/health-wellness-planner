@@ -48,6 +48,7 @@ const resolvers = {
     //   }
     // },
   },
+  
   Mutation: {
     signUp: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
