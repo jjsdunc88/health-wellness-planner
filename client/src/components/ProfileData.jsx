@@ -1,18 +1,18 @@
 import { useState } from "react";
-// import {
-//   SignUpContainer,
-//   SignUpForm,
-//   FormInputGroup,
-//   FormLabel,
-//   FormInput,
-//   SubmitButton,
-// } from "../styled-components/SignUpPage-Style";
+import {
+  ProfileContainer,
+  ProfileForm,
+  FormInputGroup,
+  FormLabel,
+  FormInput,
+  SubmitButton,
+} from "../styled-components/ProfileData-Style";
+import { NavButton } from "../styled-components/Nav-Style";
 
 import { useMutation } from "@apollo/client";
 import { MUTATION_PROFILEDATA } from "../utils/mutations";
 
 import Auth from '../utils/auth';
-import { FormLabel } from "../styled-components/SignUpPage-Style";
 
 export default function ProfileData() {
   const [formState, setFormState] = useState({
@@ -41,18 +41,23 @@ export default function ProfileData() {
     });
   };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleProfileData = async (profileId) => {
+   const dataToSave = profileData.find((profile) => profile._id === profileId);
     console.log(formState);
     setShowError(false);
     setShowSuccess(false);
 
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+        return false;
+    }
+
     try {
       const { data } = await profileData({
-        data: { ...formState },
-        variables: { ...formState },
+        variables: { userData: { ...dataToSave } },
       });
-      setShowSuccess(true);
+      setShowSuccess([ ...userData, dataToSave.profileId  ]);
     } catch (err) {
       console.error(err);
       setShowError(true);
@@ -62,7 +67,7 @@ export default function ProfileData() {
   return (
     <ProfileContainer>
       <h2>For The Best Experience, Please Provide The Following Details About Yourself</h2>
-      <ProfileForm onSubmit={handleFormSubmit} noValidate validated={validated}>
+      <ProfileForm onSubmit={handleProfileData} noValidate validated={validated}>
         <FormInputGroup>
           <FormLabel htmlFor='age'>Your Age: </FormLabel>
           <FormInput type='text' id='age' name='age' onChange={handleChange} />
@@ -91,7 +96,7 @@ export default function ProfileData() {
           <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies do You Have? </FormLabel>
           <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
         </FormInputGroup>
-        <SubmitButton href="/profile" type='submit' value='Submit' />
+        <NavButton href="/nutrition" type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
             Error Compiling Profile Data!

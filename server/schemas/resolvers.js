@@ -55,6 +55,26 @@ const resolvers = {
       const token = auth.signToken(user);
       return { token, user };
     },
+    profileData: async (parent, { age, height, weight, gender, activity, goal, diet }, context) => {
+      const userData = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        {
+          $set: {
+            profileData: {
+              age,
+              height,
+              weight,
+              gender,
+              activity,
+              goal,
+              diet
+            }
+          }
+        },
+        { new: true }
+      );
+      return userData;
+    },
     login: async (parent, { email, password }, context) => {
       if (email) {
         const user = await User.findOne( { email });

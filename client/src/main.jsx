@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <ProfileDataPage />
-      }
+      },
       {
         path: '/nutrition',
         element: <NutritionPage />
@@ -45,10 +45,6 @@ const router = createBrowserRouter([
       {
         path: "/preview",
         element: <PreviewPage />
-      },
-      {
-        path: "/profileData",
-        element: <ProfileDataPage />
       }
       // {
       //   path: '/Nav',

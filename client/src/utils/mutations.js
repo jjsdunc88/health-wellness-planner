@@ -27,18 +27,12 @@ mutation Login($email: String!, $password: String!) {
 `;
 
 export const MUTATION_PROFILEDATA = gql`
-mutation Profile($age: Number!, $height: Number!, $weight: Number!, $gender: String!, $activity: String!, $goal: String!, $diet: String!) {
+mutation ProfileData($age: Number!, $height: Number!, $weight: Number!, $gender: String!, $activity: String!, $goal: String!, $diet: String!) {
+  profileData (age: $age, height: $height, weight: $weight, gender: $gender, activity: $activity, goal: $goal, diet: $diet) {
   token
   user {
-    _id
-    username
-    age
-    height
-    weight
-    gender
-    activity
-    goal
-    diet
+    Profile
+    }
   }
 }
 `;
