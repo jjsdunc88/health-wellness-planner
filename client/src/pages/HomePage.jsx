@@ -18,7 +18,7 @@ function HomePage() {
       <WelcomeContainer>
         <WelcomeHeading>Welcome</WelcomeHeading>
         <WelcomeQuote>
-          "Strong people are harder to kill than weak people, and more useful in general"
+          "To wish to be well is a part of becoming well."
         </WelcomeQuote>
         <StyledNavButton href="/preview">Get Started</StyledNavButton>
       </WelcomeContainer>
