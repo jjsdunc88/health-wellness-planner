@@ -4,6 +4,7 @@ type User {
   username: String!
   email: String!
   profileData: [Profile]!
+  messages: [Message]!
 }
 
 type Profile {
@@ -17,7 +18,10 @@ type Profile {
 }
 
 type Message {
-  message: String!
+  _id: ID!
+  messageBody: String!
+  username: String!
+  messageType: Int!
 }
 
 type Auth {
