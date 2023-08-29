@@ -7,7 +7,10 @@ const userData = require('./userData.json');
 db.once('open', async () => {
   await cleanDB('User', 'users');
 
-  await User.insertMany(userData);
+  await User.insertMany(userData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   console.log('Users seeded!');
   process.exit(0);
