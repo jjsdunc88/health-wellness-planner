@@ -6,7 +6,7 @@ function LandingPage () {
             <div>
             <h2>Welcome</h2>
             <h3>"Strong people are harder to kill than weak people, and more useful in general"</h3>
-            <button className="startButton">Get Started</button>
+            {/* <NavButton href="/preview"> Get Started</NavButton> */}
             </div>
         </div>
     );
