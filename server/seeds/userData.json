@@ -13,6 +13,13 @@
         "goal": "lose weight",
         "diet": "no restrictions"
       }
+    ],
+    "messages": [
+      {
+        "messageBody": "",
+        "username": "johndoe12",
+        "messageType": 1
+      }
     ]
   }
 ]

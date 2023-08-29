@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const profileSchema = require('./Profile');
+const uniqueValidator = require('mongoose-unique-validator');
+
 
 const validateEmail = function (email) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -12,7 +14,8 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -26,7 +29,20 @@ const userSchema = new Schema(
       minlength: 8,
     },
     profileData: [profileSchema],
-  });
+    messages: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Message',
+      }
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
 
 // hash user password
 userSchema.pre('validate', async function (next) {
@@ -41,6 +57,8 @@ userSchema.pre('validate', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 }
+
+userSchema.plugin(uniqueValidator);
 
 const User = model('User', userSchema);
 
