@@ -13,6 +13,7 @@ import SignupPage from './pages/SignupPage';
 import NutritionPage from './pages/NutritionPage'
 import LoginPage from './pages/LoginPage'
 import PreviewPage from './pages/PreviewPage'
+import ProfileDataPage from './pages/ProfileDataPage'
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         path: "/preview",
         element: <PreviewPage />
       },
+      {
+        path: "/profileData",
+        element: <ProfileDataPage />
+      }
       // {
       //   path: '/Nav',
       //   element: <Nav />

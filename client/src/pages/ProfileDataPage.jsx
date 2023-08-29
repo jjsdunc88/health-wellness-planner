@@ -1,9 +1,16 @@
 import React, {useState} from "react";
-
-
-
+import { useNavigate } from "react-router-dom"
 function ProfileDataPage() {
-
+    const navigate = useNavigate();
+    const [formState, setFormState] = useState({
+        age: '',
+        height: '',
+        weight: '',
+        gender: '',
+        activity: '',
+        goal: '',
+        diet: ''
+    })
     const handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -13,13 +20,25 @@ function ProfileDataPage() {
           [name]: value,
         });
       };
-    
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            console.log(formState)
+            //send update request to backend
+            // const { data } = await updateProfileData({
+            //     variables: { ...formState },
+            //   });
+            navigate('/nutrition')
+        } catch {
+            console.log("error")
+        }
+    }
 
     return (
         <div>
             <h2>Profile Data</h2>
             <div>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                    <div>
                     <label htmlFor="age">Age: </label>
                     <input type="text" name="age" onChange={handleChange}/>
@@ -48,10 +67,11 @@ function ProfileDataPage() {
                         <label htmlFor="diet">Diet: </label>
                         <input type="text" name="diet" onChange={handleChange}/>
                     </div>                  
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         </div>
     );
 }
 
-epxort default ProfileDataPage;
+export default ProfileDataPage;
