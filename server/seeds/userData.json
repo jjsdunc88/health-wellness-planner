@@ -3,14 +3,16 @@
     "username": "johndoe12",
     "email": "johndoe@test.com",
     "password": "testing123",
-    "profileData": {
-      "age": 25,
-      "height": 72,
-      "weight": 180,
-      "gender": "male",
-      "activity": "moderate",
-      "goal": "lose weight",
-      "diet": "no restrictions"
-    }
+    "profileData": [
+      {
+        "age": 25,
+        "height": 72,
+        "weight": 180,
+        "gender": "male",
+        "activity": "moderate",
+        "goal": "lose weight",
+        "diet": "no restrictions"
+      }
+    ]
   }
 ]
