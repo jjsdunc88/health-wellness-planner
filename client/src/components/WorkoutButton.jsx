@@ -6,17 +6,18 @@ import {
   MessageSection2,
 } from "../styled-components/MacroButton2-Style";
 import { MUTATION_CHAT2 } from "../utils/mutations";
+import auth from "../utils/auth";
 
 // Used to test the prompt
-const profileData = {
-  'age': 25,
-  'height': 72,
-  'weight': 180,
-  'gender': 'male',
-  'activity': 'moderate',
-  'goal': ' weight loss',
-  'diet': 'no restrictions',
-};
+// const profileData = {
+//   'age': 25,
+//   'height': 72,
+//   'weight': 180,
+//   'gender': 'male',
+//   'activity': 'moderate',
+//   'goal': ' weight loss',
+//   'diet': 'no restrictions',
+// };
 
 const WorkoutButton = (props) => {
   const [response, setResponse] = useState("");
@@ -24,11 +25,19 @@ const WorkoutButton = (props) => {
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
+    const token = auth.loggedIn() ? auth.getToken() : null;
+    console.log(token);
+    let messagePrompt;
+      if (token) {
+        messagePrompt = `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Please generate a daily workout routine based on my goals and current activity level.`;
+      } else {
+        messagePrompt = `I am a new user and I would like to generate a daily workout routine based on my goals and current activity level.`;
+      }
     event.preventDefault();
     document.querySelector(".jw-modal").style.display = "block";
-    const { data } = await chat2({
+    const { data } = await chat2({      
       variables: {
-        message: `I am a ${profileData.age} years old. I am a ${profileData.gender} that weighs ${profileData.weight} pounds and I am ${profileData.height} inches tall. I have ${profileData.diet} diet and I have a ${profileData.activity} exercise level. This is my ${profileData.goal}. Please generate a daily workout routine based on my goals and current activity level.`,
+        message: messagePrompt,
       },
     });
     // console.log(message);
