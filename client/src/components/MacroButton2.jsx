@@ -36,34 +36,31 @@ const MacroButton2 = (props) => {
   };
 
   return (
-    <MacroButton2Container>
-      <CalculateButton2 onClick={handleButtonClick}>
-        Calculate Macros
-      </CalculateButton2>
-      <MessageSection2 className="message">
-        {response ? (
-        <pre>{response}</pre>
-        )
-        : (
-        <div id="modal-1" class="jw-modal" style={{
-          "display": "block",
-          "position": "fixed",
-          "z-index": "10000",
-          "backgroundColor": "rgba(0, 0, 0, .75)",
-          "width": "300px",
-          "height": "300px",
-          "top": "50%",
-          "left": "50%",
-          "transform": "translate(-50%, -50%)"
-        }}>
-          <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
-            <h1 style={{ "textAlign": "center" }}>Loading...</h1>
-          </div>
-        </div>)
-        }
-      </MessageSection2>
-    </MacroButton2Container>
-  );
-};
+      <div>
+      <button onClick={handleButtonClick}>Calculate My Macros</button>
+      <section className="message">
+      {response ? (
+          <pre>{response}</pre>
+          )
+          : (
+          <div id="modal-1" class="jw-modal" style={{
+            "display": "block",
+            "position": "fixed",
+            "z-index": "10000",
+            "backgroundColor": "rgba(0, 0, 0, .75)",
+            "width": "300px",
+            "height": "300px",
+            "top": "50%",
+            "left": "50%",
+            "transform": "translate(-50%, -50%)"
+          }}>
+            <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
+              <h1 style={{ "textAlign": "center" }}>Loading...</h1>
+            </div>
+          </div>)}    
+          </section>
+      </div>
+    )
+  };
 
 export default MacroButton2;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-// import {
-//   MacroButton2Container,
-//   CalculateButton2,
-//   MessageSection2,
-// } from "../styled-components/MacroButton2-Style";
+import {
+  MacroButton2Container,
+  CalculateButton2,
+  MessageSection2,
+} from "../styled-components/MacroButton2-Style";
 import { MUTATION_CHAT2 } from "../utils/mutations";
 
 // Used to test the prompt
@@ -57,10 +57,10 @@ const WorkoutButton = (props) => {
           <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
             <h1 style={{ "textAlign": "center" }}>Loading...</h1>
           </div>
-        </div>)
-        }    </section>
+        </div>)}    
+        </section>
     </div>
   )
 };
 
-export default MacroButton2;
+export default WorkoutButton;
