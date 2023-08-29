@@ -87,14 +87,14 @@ export default function Login(props) {
         <SubmitButton type="submit" value="Submit" className="submitBtn" />
         {showError ? (
           <h4 style={{ color: "red" }}>
-            Wrong password!
+            Wrong email or password!
           </h4>
         ) : (
           <></>
         )}
         {showSuccess ? (
           <h4 style={{ color: "green" }}>
-            Good Login!
+            Welcome!
           </h4>
         ) : (
           <></>

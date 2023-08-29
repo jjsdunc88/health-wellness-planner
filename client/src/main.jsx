@@ -13,6 +13,7 @@ import SignupPage from './pages/SignupPage';
 import NutritionPage from './pages/NutritionPage'
 import LoginPage from './pages/LoginPage'
 
+
 const router = createBrowserRouter([
   {
     path: "/",

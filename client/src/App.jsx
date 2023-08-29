@@ -9,7 +9,7 @@ import MacroButton2 from './components/MacroButton2'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
-import Fitness from './components/Fitness';
+// import Fitness from './components/Fitness';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import LandingPage from './components/LandingPage';
