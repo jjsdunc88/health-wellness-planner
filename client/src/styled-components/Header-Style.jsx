@@ -37,7 +37,10 @@ export const StyledLink = styled.a`
 
   &:hover {
     text-decoration: underline;
-    transform: scale(1.1);
+    text-decoration-color: #FFD700;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 3px;
+    font-style: italic;
   }
 
   @media (min-width: 768px) {
