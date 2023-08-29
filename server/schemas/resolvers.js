@@ -79,7 +79,7 @@ const resolvers = {
           { "role": "system", "content": "What would you like me to do based off your profile data?" },
         ],
 
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
 
       })
       // link button to backend

@@ -74,7 +74,7 @@ export default function SignUp() {
         <SubmitButton type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
-            Wrong password!
+            Error creating user!
           </h4>
         ) : (
           <></>
