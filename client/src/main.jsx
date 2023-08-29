@@ -46,6 +46,10 @@ const router = createBrowserRouter([
         path: "/preview",
         element: <PreviewPage />
       },
+      {
+        path: "/profileData",
+        element: <ProfileDataPage />
+      }
       // {
       //   path: '/Nav',
       //   element: <Nav />

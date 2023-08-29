@@ -16,6 +16,7 @@ import LandingPage from './components/LandingPage';
 import MealPlanButton from './components/MealPlanButton';
 import { Outlet } from 'react-router-dom';
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });

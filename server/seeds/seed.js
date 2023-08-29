@@ -1,5 +1,5 @@
 const db = require('../config/connection');
-const { User } = require('../models');
+const { User, Message } = require('../models');
 const cleanDB = require('./cleanDB');
 
 const userData = require('./userData.json');
@@ -7,10 +7,7 @@ const userData = require('./userData.json');
 db.once('open', async () => {
   await cleanDB('User', 'users');
 
-  await User.insertMany(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  await User.insertMany(userData);
 
   console.log('Users seeded!');
   process.exit(0);
