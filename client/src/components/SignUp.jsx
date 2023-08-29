@@ -48,10 +48,10 @@ export default function SignUp() {
         variables: { ...formState },
       });
 
-      // Auth.login(data.signUp.token);
+      Auth.login(data.signUp.token);
       localStorage.setItem('id_token', data.signUp.token);
       setShowSuccess(true);
-      navigate("/profileData")
+      navigate("/profile")
     } catch (err) {
       console.error(err);
       setShowError(true);
@@ -74,7 +74,7 @@ export default function SignUp() {
           <FormLabel htmlFor='password'>Password: </FormLabel>
           <FormInput type='password' id='password' name='password' onChange={handleChange} />
         </FormInputGroup>
-        <SubmitButton type='submit' value='Submit' />
+        <SubmitButton href='/profile' type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
             Error creating user!
