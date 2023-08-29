@@ -10,10 +10,11 @@ import {
 
 import { useMutation } from "@apollo/client";
 import { MUTATION_SIGNUP } from "../utils/mutations";
-
+import { useNavigate } from "react-router-dom";
 import Auth from '../utils/auth';
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     username: '',
     email: '',
@@ -47,8 +48,10 @@ export default function SignUp() {
         variables: { ...formState },
       });
 
-      Auth.login(data.signUp.token);
+      // Auth.login(data.signUp.token);
+      localStorage.setItem('id_token', data.signUp.token);
       setShowSuccess(true);
+      navigate("/profileData")
     } catch (err) {
       console.error(err);
       setShowError(true);
