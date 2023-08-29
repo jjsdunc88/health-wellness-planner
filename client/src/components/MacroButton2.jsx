@@ -8,15 +8,15 @@ import {
 import { MUTATION_CHAT2 } from "../utils/mutations";
 
 // Used to test the prompt
-const profileData = {
-  'age': 25,
-  'height': 72,
-  'weight': 180,
-  'gender': 'male',
-  'activity': 'moderate',
-  'goal': ' weight loss',
-  'diet': 'no restrictions',
-};
+// const profileData = {
+//   'age': 25,
+//   'height': 72,
+//   'weight': 180,
+//   'gender': 'male',
+//   'activity': 'moderate',
+//   'goal': ' weight loss',
+//   'diet': 'no restrictions',
+// };
 
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
@@ -24,11 +24,13 @@ const MacroButton2 = (props) => {
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
+
     event.preventDefault();
+    //query profile data from database
     document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {
-        message: `I am a ${profileData.age} years old. I am a ${profileData.gender} that weighs ${profileData.weight} pounds and I am ${profileData.height} inches tall. I have ${profileData.diet} diet and I have a ${profileData.activity} exercise level. This is my ${profileData.goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`,
+        message: `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`,
       },
     });
     // console.log(message);

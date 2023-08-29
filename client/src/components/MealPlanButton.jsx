@@ -9,15 +9,15 @@ import {
 import { MUTATION_CHAT2 } from "../utils/mutations";
 
 // Used to test the prompt
-const profileData = {
-  'age': 25,
-  'height': 72,
-  'weight': 180,
-  'gender': 'male',
-  'activity': 'moderate',
-  'goal': 'lose',
-  'diet': 'no restrictions',
-};
+// const profileData = {
+//   'age': 25,
+//   'height': 72,
+//   'weight': 180,
+//   'gender': 'male',
+//   'activity': 'moderate',
+//   'goal': 'lose',
+//   'diet': 'no restrictions',
+// };
 
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
@@ -29,7 +29,7 @@ const MealPlanButton = (props) => {
     document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {
-        message: `Based on the macros from my ${JSON.stringify(profileData)}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`,
+        message: `Based on the macros from my ${user.profileData[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`,
       },
     });
     document.querySelector(".jw-modal").style.display = "none";
