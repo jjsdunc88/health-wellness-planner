@@ -10,7 +10,7 @@ import {
 import { NavButton } from "../styled-components/Nav-Style";
 
 import { useMutation } from "@apollo/client";
-import { MUTATION_PROFILEDATA } from "../utils/mutations";
+import { MUTATION_ADDPROFILE } from "../utils/mutations";
 
 import Auth from '../utils/auth';
 
@@ -25,7 +25,7 @@ export default function ProfileData() {
     diet: '',
   });
 
-  const [profileData, { error }] = useMutation(MUTATION_PROFILEDATA);
+  const [addProfile, { error }] = useMutation(MUTATION_ADDPROFILE);
   const [validated] = useState(false);
 
   const [showError, setShowError] = useState(false);
@@ -41,8 +41,8 @@ export default function ProfileData() {
     });
   };
 
-  const handleProfileData = async (profileId) => {
-   const dataToSave = profileData.find((profile) => profile._id === profileId);
+  const handleProfileData = async (event) => {
+    event.preventDefault();
     console.log(formState);
     setShowError(false);
     setShowSuccess(false);
@@ -54,14 +54,24 @@ export default function ProfileData() {
     }
 
     try {
-      const { data } = await profileData({
-        variables: { userData: { ...dataToSave } },
+      const { data } = await addProfile({
+        variables: { profileData: { ...formState } },
       });
-      setShowSuccess([ ...userData, dataToSave.profileId  ]);
+      setShowSuccess(true);
     } catch (err) {
       console.error(err);
       setShowError(true);
     }
+
+    setFormState({
+      age: '',
+      height: '',
+      weight: '',
+      gender: '',
+      activity: '',
+      goal: '',
+      diet: '',
+    })
   };
 
   return (
@@ -96,7 +106,7 @@ export default function ProfileData() {
           <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies do You Have? </FormLabel>
           <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
         </FormInputGroup>
-        <NavButton href="/nutrition" type='submit' value='Submit' />
+        <SubmitButton href="/nutrition" type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
             Error Compiling Profile Data!
