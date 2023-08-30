@@ -1,8 +1,9 @@
 const { User, Message } = require('../models');
-const auth = require('../utils/auth');
+const { AuthenicationError } = require('../utils/auth');
 const axios = require('axios');
 const OpenAI = require('openai');
 require('dotenv').config();
+const Auth = require("../utils/auth");
 
 const isLoggedIn = (context) => {
   if (context && context.hasOwnProperty('user') && context.user.hasOwnProperty('_id')) {
@@ -11,24 +12,19 @@ const isLoggedIn = (context) => {
   return false;
 }
 
-
-
 const openai = new OpenAI({
   apiKey: process.env.CHAT_API_KEY,
 });
 
 const resolvers = {
   Query: {
-    me: async (parent, { }, context) => {
-      if (!isLoggedIn(context)) {
-        throw new Error('Not logged in');
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id })
+        console.log(context.user)
+        return user
       }
-      const id = context.user._id;
-      let user = await User.findById(id);
-      user = user.toObject();
-
-      console.log(user);
-      return user;
+      throw AuthenicationError;
     },
     // chat: async (parent, { message }) => {
     //   const chatCompletion = await openai.chat.completions.create({
@@ -50,34 +46,11 @@ const resolvers = {
   },
   
   Mutation: {
-    
     signUp: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
-      const token = auth.signToken(user);
+      const token = Auth.signToken(user);
       return { token, user };
     },
-
-    profileData: async (parent, { age, height, weight, gender, activity, goal, diet }, context) => {
-      const userData = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        {
-          $set: {
-            profileData: {
-              age,
-              height,
-              weight,
-              gender,
-              activity,
-              goal,
-              diet
-            }
-          }
-        },
-        { new: true }
-      );
-      return userData;
-    },
-
     login: async (parent, { email, password }, context) => {
       if (email) {
         const user = await User.findOne( { email });
@@ -88,12 +61,24 @@ const resolvers = {
         if (!correctPw) {
           throw new Error('Incorrect login credentials')
         }
-        const token = auth.signToken(user);
+        const token = Auth.signToken(user);
         return { token, user };
       }
       throw new Error('Error: No user found with this email address');
     },
-
+    addProfile: async (parent, { profileData }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { profileData: profileData }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw AuthenicationError;
+    },
     userUpdate: async (parent, { weight, activity, goal, diet }, context) => {
       if (loggedIn(context)) {
         const userData = await User.findOneAndUpdate(
@@ -113,7 +98,6 @@ const resolvers = {
         return userData;
       }
     },
-
     chat2: async (parent, { message }) => {
       console.log(message);
       const chatCompletion = await openai.chat.completions.create({

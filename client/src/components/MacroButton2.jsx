@@ -24,9 +24,12 @@ import { QUERY_ME } from "../utils/queries";
 
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
-  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+  
+  const { loading, data } = useQuery(QUERY_ME);
+  const user = data?.me || {};
+  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;

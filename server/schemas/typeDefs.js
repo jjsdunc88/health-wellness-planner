@@ -46,8 +46,9 @@ type Query {
 
 type Mutation {
   signUp(username: String!, email: String!, password: String!): Auth
-  profileData(profileData: ProfileInput!): User
   login(email: String!, password: String!): Auth
+  addProfile(profileData: ProfileInput!): User
+  userUpdate(weight: Int, activity: String, goal: String, diet: String): User
   chat2(message: String!): Message
 }
 `;
