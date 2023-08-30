@@ -50,11 +50,13 @@ const resolvers = {
   },
   
   Mutation: {
+    
     signUp: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
       const token = auth.signToken(user);
       return { token, user };
     },
+
     profileData: async (parent, { age, height, weight, gender, activity, goal, diet }, context) => {
       const userData = await User.findOneAndUpdate(
         { _id: context.user._id },
@@ -75,6 +77,7 @@ const resolvers = {
       );
       return userData;
     },
+
     login: async (parent, { email, password }, context) => {
       if (email) {
         const user = await User.findOne( { email });
@@ -90,6 +93,27 @@ const resolvers = {
       }
       throw new Error('Error: No user found with this email address');
     },
+
+    userUpdate: async (parent, { weight, activity, goal, diet }, context) => {
+      if (loggedIn(context)) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              profileData: {
+                weight,
+                activity,
+                goal,
+                diet
+              }
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    },
+
     chat2: async (parent, { message }) => {
       console.log(message);
       const chatCompletion = await openai.chat.completions.create({
