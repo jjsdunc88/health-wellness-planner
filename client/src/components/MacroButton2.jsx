@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery} from "@apollo/client";
 import {
   MacroButton2Container,
   CalculateButton2,
   MessageSection2,
 } from "../styled-components/MacroButton2-Style";
 import { MUTATION_CHAT2 } from "../utils/mutations";
+import auth from "../utils/auth";
+import { QUERY_ME } from "../utils/queries";
 
 // Used to test the prompt
 // const profileData = {
@@ -18,19 +20,29 @@ import { MUTATION_CHAT2 } from "../utils/mutations";
 //   'diet': 'no restrictions',
 // };
 
+
+
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
+  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
+    const token = auth.loggedIn() ? auth.getToken() : null;
+    console.log(token);
 
+    let messagePrompt;
+      if (token) {
+        messagePrompt = `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`;
+      } else {
+        messagePrompt = `I am a new user and I would like to generate my macros.`;
+      }
     event.preventDefault();
-    //query profile data from database
     document.querySelector(".jw-modal").style.display = "block";
-    const { data } = await chat2({
+    const { data } = await chat2({      
       variables: {
-        message: `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`,
+        message: messagePrompt,
       },
     });
     // console.log(message);
@@ -68,3 +80,4 @@ const MacroButton2 = (props) => {
   };
 
 export default MacroButton2;
+
