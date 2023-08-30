@@ -8,6 +8,7 @@ import {
 } from "../styled-components/MealPlanButton-Style";
 import { MUTATION_CHAT2 } from "../utils/mutations";
 import auth from "../utils/auth";
+import { QUERY_ME } from '../utils/queries';
 
 // Used to test the prompt
 // const profileData = {
