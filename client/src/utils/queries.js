@@ -6,6 +6,15 @@ query Me {
     _id
     username
     email
+    profileData {
+      age
+      height
+      weight
+      gender
+      activity
+      goal
+      diet
+    }
   }
 }
 `;

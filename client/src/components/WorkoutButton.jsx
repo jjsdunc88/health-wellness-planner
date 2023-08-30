@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   MacroButton2Container,
   CalculateButton2,
@@ -21,12 +21,14 @@ import auth from "../utils/auth";
 
 const WorkoutButton = (props) => {
   const [response, setResponse] = useState("");
+  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
+    
     let messagePrompt;
       if (token) {
         messagePrompt = `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Please generate a daily workout routine based on my goals and current activity level.`;

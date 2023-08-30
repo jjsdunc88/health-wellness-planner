@@ -1,12 +1,13 @@
 // MealPlanButton.jsx
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   MealPlanButtonContainer,
   CalculateMealPlanButton,
   MealPlanMessageSection,
 } from "../styled-components/MealPlanButton-Style";
 import { MUTATION_CHAT2 } from "../utils/mutations";
+import auth from "../utils/auth";
 
 // Used to test the prompt
 // const profileData = {
@@ -21,15 +22,24 @@ import { MUTATION_CHAT2 } from "../utils/mutations";
 
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
+  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const handleButtonClick = async (event) => {
+    const token = auth.loggedIn() ? auth.getToken() : null;
+
+    let messagePrompt;
+    if (token) {
+      messagePrompt = `Based on the macros from my ${user.profileData[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
+    } else {
+      messagePrompt = `I am a new user and I would like to generate a weekly meal plan.`;
+    }
     event.preventDefault();
     document.querySelector(".jw-modal").style.display = "block";
     const { data } = await chat2({
       variables: {
-        message: `Based on the macros from my ${user.profileData[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`,
+        message: messagePrompt,
       },
     });
     document.querySelector(".jw-modal").style.display = "none";
