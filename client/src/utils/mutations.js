@@ -27,8 +27,19 @@ mutation Login($email: String!, $password: String!) {
 `;
 
 export const MUTATION_PROFILEDATA = gql`
-mutation ProfileData($age: Number!, $height: Number!, $weight: Number!, $gender: String!, $activity: String!, $goal: String!, $diet: String!) {
+mutation ProfileData($age: Int!, $height: Int!, $weight: Int!, $gender: String!, $activity: String!, $goal: String!, $diet: String!) {
   profileData (age: $age, height: $height, weight: $weight, gender: $gender, activity: $activity, goal: $goal, diet: $diet) {
+  token
+  user {
+    Profile
+    }
+  }
+}
+`;
+
+export const MUTATION_USERUPDATE = gql`
+mutation UserUpdate($weight: Int!, $activity: String!, $goal: String!, $diet: String!) {
+  userUpdate (weight: $weight, activity: $activity, goal: $goal, diet: $diet) {
   token
   user {
     Profile
