@@ -13,7 +13,7 @@ const isLoggedIn = (context) => {
 }
 
 const openai = new OpenAI({
-  apiKey: process.env.CHAT_API_KEY,
+  apiKey: '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'
 });
 
 const resolvers = {
@@ -67,6 +67,23 @@ const resolvers = {
       throw new Error('Error: No user found with this email address');
     },
     addProfile: async (parent, { profileData }, context) => {
+      if (context.user) {
+        console.log(profileData)
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: {profile: profileData}},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        
+        return user
+
+      }
+      throw AuthenicationError;
+    },
+    updateProfile: async (parent, { profileData }, context) => {
       if (context.user) {
         console.log(profileData)
         const user = await User.findOneAndUpdate(

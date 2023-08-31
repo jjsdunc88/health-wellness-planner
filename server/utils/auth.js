@@ -2,15 +2,15 @@ const { GraphQLError } = require('graphql');
 const tokenizer = require('jsonwebtoken');
 require('dotenv').config();
 
-const secret = process.env.TOKEN_SECRET;
-const expiration = process.env.TOKEN_EXPIRATION;
+const secret = 'mysecretsshhhhh';
+const expiration = '2h';
 
 // token secret check 
-if (process.env.TOKEN_SECRET && process.env.TOKEN_SECRET.length > 3) {
-    console.log('VALID TOKEN_SECRET');
-} else {
-    console.log('MISSING TOKEN_SECRET');
-}
+// if (process.env.TOKEN_SECRET && process.env.TOKEN_SECRET.length > 3) {
+//     console.log('VALID TOKEN_SECRET');
+// } else {
+//     console.log('MISSING TOKEN_SECRET');
+// }
 
 module.exports = {
     AuthenicationError: new GraphQLError('Could not authenticate user.', {
