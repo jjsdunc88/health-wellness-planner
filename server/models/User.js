@@ -21,14 +21,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      validate: [validateEmail, 'Need a vaild email address']
+      validate: [validateEmail, 'Need a valid email address']
     },
     password: {
       type: String,
       required: true,
       minlength: 8,
     },
-    profileData: [profileSchema],
+    profile: {profileSchema},
     messages: [
       {
         type: Schema.Types.ObjectId,

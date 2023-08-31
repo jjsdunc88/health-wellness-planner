@@ -3,11 +3,12 @@ type User {
   _id: ID!
   username: String!
   email: String!
-  profileData: [Profile]!
+  profileData: Profile
   messages: [Message]!
 }
 
 type Profile {
+  _id: ID
   age: Int!
   height: Int!
   weight: Int!

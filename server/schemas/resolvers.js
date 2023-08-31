@@ -68,14 +68,23 @@ const resolvers = {
     },
     addProfile: async (parent, { profileData }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        console.log(profileData)
+        const user = await User.findOne(
           { _id: context.user._id },
-          { $addToSet: { profileData: profileData }},
-          {
-            new: true,
-            runValidators: true,
-          }
+          // { $set: {profile: profileData}},
+          // {
+          //   new: true,
+          //   runValidators: true,
+          // }
         );
+        user.profile = {
+          age: profileData.age,
+          
+        }
+        console.log(user.profile)
+        user.save()
+        return user
+
       }
       throw AuthenicationError;
     },
