@@ -52,6 +52,30 @@ mutation Mutation($profileData: ProfileInput!) {
 }
 `;
 
+export const MUTATION_UPDATEPROFILE = gql` 
+mutation Mutation($profileData: ProfileInput!) {
+  updateProfile(profileData: $profileData) {
+    _id
+    email
+    username
+    profile {
+      _id
+      activity
+      age
+      diet
+      goal
+      weight
+    }
+    messages {
+      _id
+      messageBody
+      messageType
+      username
+    }
+  }
+}
+`;
+
 export const MUTATION_USERUPDATE = gql`
 mutation UserUpdate($weight: Int!, $activity: String!, $goal: String!, $diet: String!) {
   userUpdate (weight: $weight, activity: $activity, goal: $goal, diet: $diet) {
