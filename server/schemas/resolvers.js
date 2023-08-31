@@ -68,14 +68,18 @@ const resolvers = {
     },
     addProfile: async (parent, { profileData }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        console.log(profileData)
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { profileData: profileData }},
+          { $push: {profile: profileData}},
           {
             new: true,
             runValidators: true,
           }
         );
+        
+        return user
+
       }
       throw AuthenicationError;
     },

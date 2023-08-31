@@ -27,12 +27,13 @@ mutation login($email: String!, $password: String!) {
 `;
 
 export const MUTATION_ADDPROFILE = gql`
-mutation addProfile($profileData: ProfileInput!) {
-  addProfile (profileData: $profileData) {
+mutation Mutation($profileData: ProfileInput!) {
+  addProfile(profileData: $profileData) {
     _id
     username
     email
-    profileData {
+    profile {
+      _id
       age
       height
       weight
@@ -40,6 +41,12 @@ mutation addProfile($profileData: ProfileInput!) {
       activity
       goal
       diet
+    }
+    messages {
+      _id
+      messageBody
+      username
+      messageType
     }
   }
 }

@@ -11,7 +11,7 @@ function PreviewPage() {
                 <h1>What is FitGuide?</h1>
             </div>
             <p>FitGuide is a tool to help develop effective diet and exercise
-                strategies that promote postive long-term health & fitness and improve quality of life.
+                strategies that promote postive long-term health & fitness, improve quality of life and reduce the risk of chronic disease.
             </p>
             <div>
                 <h1>What are Macros?</h1>
@@ -20,7 +20,7 @@ function PreviewPage() {
                 They are the nutrients that your body needs in large amounts, specifically carbohydrates, fat, and protein.
             </p>
             <p>
-                Macro counting is a way of tracking your intake of macros.
+                Calorie & macro counting is a way of tracking your intake of macros.
                 This can be helpful for people who are trying to lose weight, gain muscle, or improve their overall health.
             </p>
             <div>
