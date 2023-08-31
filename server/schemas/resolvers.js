@@ -69,20 +69,15 @@ const resolvers = {
     addProfile: async (parent, { profileData }, context) => {
       if (context.user) {
         console.log(profileData)
-        const user = await User.findOne(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          // { $set: {profile: profileData}},
-          // {
-          //   new: true,
-          //   runValidators: true,
-          // }
+          { $push: {profile: profileData}},
+          {
+            new: true,
+            runValidators: true,
+          }
         );
-        user.profile = {
-          age: profileData.age,
-          
-        }
-        console.log(user.profile)
-        user.save()
+        
         return user
 
       }

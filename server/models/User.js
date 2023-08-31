@@ -28,7 +28,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 8,
     },
-    profile: {profileSchema},
+    profile: [profileSchema],
     messages: [
       {
         type: Schema.Types.ObjectId,
