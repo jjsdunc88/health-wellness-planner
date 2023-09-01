@@ -23,9 +23,12 @@ import { QUERY_ME } from '../utils/queries';
 
 const WorkoutButton = (props) => {
   const [response, setResponse] = useState("");
-  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+
+  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+  const user = userData?.me || {};
+  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
@@ -33,7 +36,7 @@ const WorkoutButton = (props) => {
     
     let messagePrompt;
       if (token) {
-        messagePrompt = `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Please generate a daily workout routine based on my goals and current activity level.`;
+        messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Please generate a daily workout routine based on my goals and current activity level.`;
       } else {
         messagePrompt = `I am a new user and I would like to generate a daily workout routine based on my goals and current activity level.`;
       }
@@ -47,7 +50,7 @@ const WorkoutButton = (props) => {
     // console.log(message);
     // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
-    setResponse(data.chat2.message);
+    setResponse(data.chat2.messageBody);
   };
 
   return (
