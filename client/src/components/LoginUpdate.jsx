@@ -24,7 +24,7 @@ export default function LoginUpdate() {
     diet: '',
   });
 
-  const [addProfile, { error }] = useMutation(MUTATION_UPDATEPROFILE);
+  const [updateProfile, { error }] = useMutation(MUTATION_UPDATEPROFILE);
   const [validated] = useState(false);
 
   const [showError, setShowError] = useState(false);

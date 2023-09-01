@@ -12,8 +12,10 @@ import { useMutation } from "@apollo/client";
 import { MUTATION_SIGNUP } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 import Auth from '../utils/auth';
+import { useOutletContext } from "react-router-dom";
 
 export default function SignUp() {
+  const [loggedIn, setLoggedIn] = useOutletContext();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     username: '',
@@ -21,7 +23,7 @@ export default function SignUp() {
     password: '',
   });
 
-  const [signUp, { error }] = useMutation(MUTATION_SIGNUP);
+  const [signUp, { error }] = useMutation(MUTATION_SIGNUP, {fetchPolicy: "no-cache"});
   const [validated] = useState(false);
 
   const [showError, setShowError] = useState(false);
@@ -51,6 +53,7 @@ export default function SignUp() {
       Auth.login(data.signUp.token);
       localStorage.setItem('id_token', data.signUp.token);
       setShowSuccess(true);
+      setLoggedIn(true);
       navigate("/profile")
     } catch (err) {
       console.error(err);
@@ -74,7 +77,7 @@ export default function SignUp() {
           <FormLabel htmlFor='password'>Password: </FormLabel>
           <FormInput type='password' id='password' name='password' onChange={handleChange} />
         </FormInputGroup>
-        <SubmitButton href='/profile' type='submit' value='Submit' />
+        <SubmitButton type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
             Error creating user!

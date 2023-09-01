@@ -13,7 +13,7 @@ const isLoggedIn = (context) => {
 }
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: process.env.CHAT_API_KEY
 });
 
 const resolvers = {

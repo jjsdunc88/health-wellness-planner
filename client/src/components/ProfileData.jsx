@@ -107,7 +107,7 @@ export default function ProfileData() {
             <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies do You Have? </FormLabel>
             <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
           </FormInputGroup>
-          <SubmitButton href="/nutrition" type='submit' value='Submit' />
+          <SubmitButton type='submit' value='Submit' />
           {showError ? (
             <h4 style={{ color: "red" }}>
               Error Compiling Profile Data!
