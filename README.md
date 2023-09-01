@@ -18,6 +18,8 @@ This application was created using MERN stack technologies: MongoDB, Express, Re
 
 - [Credits](#credits)
 
+- [Acknowledgments](#acknowledgments)
+
 - [Questions](#questions)
 
 
@@ -65,8 +67,18 @@ Please see link for additional information:
 
 [Jake Duncan](https://github.com/jjsdunc88)
 
-TA Meg Meyers
 
+
+
+## Acknowledgments
+
+Instructor Anthony Maddatu
+
+TA Tom Woods
+
+TA Andrew Read
+
+TA Meg Meyers
 
 
 ## Questions
