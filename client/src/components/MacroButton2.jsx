@@ -26,6 +26,7 @@ const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+  
   const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
   console.log(user);
