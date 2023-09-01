@@ -26,6 +26,7 @@ const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+  
   const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
   console.log(user);
@@ -56,31 +57,54 @@ const MacroButton2 = (props) => {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Calculate My Macros</button>
+      <button
+        onClick={handleButtonClick}
+        style={{
+          backgroundColor: "#FFA500",    
+          color: "white",               
+          padding: "10px 20px",          
+          borderRadius: "5px",           
+          border: "none",               
+          cursor: "pointer",             
+          fontWeight: "bold",            
+          fontSize: "16px",              
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)", 
+        }}
+      >
+        Calculate My Macros
+      </button>
       <section className="message">
         {response ? (
-          <pre>{response}</pre>
-        )
-          : (
-            <div id="modal-1" class="jw-modal" style={{
-              "display": "none",
-              "position": "fixed",
-              "z-index": "10000",
-              "backgroundColor": "rgba(0, 0, 0, .75)",
-              "width": "300px",
-              "height": "300px",
-              "top": "50%",
-              "left": "50%",
-              "transform": "translate(-50%, -50%)"
-            }}>
-              <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
-                <h1 style={{ "textAlign": "center" }}>Loading...</h1>
-              </div>
-            </div>)}
+          <pre style={{
+            whiteSpace: "pre-wrap",
+            maxWidth: "900px",
+            margin: "0 auto",
+            fontFamily: "calibri",
+          }}>{response}</pre>
+        ) : (
+          <div id="modal-1" className="jw-modal" style={{
+            display: "none",
+            position: "fixed",
+            zIndex: "10000",
+            backgroundColor: "rgba(0, 0, 0, .75)",
+            width: "300px",
+            height: "300px",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)"
+          }}>
+            <div className="jw-modal-body" style={{ margin: "auto", width: "50%" }}>
+              <h1 style={{ textAlign: "center" }}>
+                Loading...
+                <img src="../assets/loading-gif.gif" alt="Loading GIF" />
+              </h1>
+            </div>
+          </div>
+        )}
       </section>
     </div>
-  )
-};
+  );
+        };  
 
 export default MacroButton2;
 

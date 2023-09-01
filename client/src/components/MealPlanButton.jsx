@@ -23,16 +23,19 @@ import { QUERY_ME } from '../utils/queries';
 
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
-  const { user } = useQuery(QUERY_ME);
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+
+  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+  const user = userData?.me || {};
+  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
 
     let messagePrompt;
     if (token) {
-      messagePrompt = `Based on the macros from my ${user.profileData[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
+      messagePrompt = `Based on the macros from my ${user.profile[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
     } else {
       messagePrompt = `I am a new user and I would like to generate a weekly meal plan.`;
     }
@@ -44,7 +47,7 @@ const MealPlanButton = (props) => {
       },
     });
     document.querySelector(".jw-modal").style.display = "none";
-    setResponse(data.chat2.message);
+    setResponse(data.chat2.messageBody);
   };
 
   return (
