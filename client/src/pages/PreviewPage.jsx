@@ -25,7 +25,7 @@ function PreviewPage() {
             </p>
             <div>
                 <h1>
-                    Physial Activity Guidelines for Americans (PAG)
+                    Physical Activity Guidelines for Americans (PAG)
                 </h1>
             </div>
             <p>
