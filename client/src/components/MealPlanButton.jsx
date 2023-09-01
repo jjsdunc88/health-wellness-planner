@@ -32,10 +32,11 @@ const MealPlanButton = (props) => {
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
+    console.log(token);
 
     let messagePrompt;
     if (token) {
-      messagePrompt = `Based on the macros from my ${user.profile[0]}, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
+      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}.Based on the macros, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
     } else {
       messagePrompt = `I am a new user and I would like to generate a weekly meal plan.`;
     }
