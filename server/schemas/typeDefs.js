@@ -51,6 +51,7 @@ type Mutation {
   addProfile(profileData: ProfileInput!): User
   userUpdate(weight: Int, activity: String, goal: String, diet: String): User
   chat2(message: String!): Message
+  updateProfile(profileData: ProfileInput!): User
 }
 `;
 

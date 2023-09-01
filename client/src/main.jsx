@@ -12,6 +12,7 @@ import Error from './pages/Error';
 import SignupPage from './pages/SignupPage';
 import NutritionPage from './pages/NutritionPage';
 import LoginPage from './pages/LoginPage';
+import LoginUpdatePage from './pages/LoginUpdatePage';
 import PreviewPage from './pages/PreviewPage';
 import ProfileDataPage from './pages/ProfileDataPage';
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />
+      },
+      {
+        path: '/updateprofile',
+        element: <LoginUpdatePage />
       },
       {
         path: "/preview",
