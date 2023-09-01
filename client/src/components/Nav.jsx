@@ -6,10 +6,11 @@ function Nav(props) {
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
+        props.setLoggedIn(false);
     };
     return (
         <div>
-            {Auth.loggedIn() ? (
+            {props.loggedIn ? (
                 <>
                     <NavContainer>
                         <NavButton href="/nutrition">Nutrition Page</NavButton>

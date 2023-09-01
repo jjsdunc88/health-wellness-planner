@@ -6,7 +6,7 @@ query Me {
     _id
     username
     email
-    profileData {
+    profile {
       age
       height
       weight

@@ -3,7 +3,7 @@ type User {
   _id: ID!
   username: String!
   email: String!
-  profile: [Profile]
+  profile: [Profile]!
   messages: [Message]!
 }
 
@@ -19,10 +19,10 @@ type Profile {
 }
 
 type Message {
-  _id: ID!
-  messageBody: String!
-  username: String!
-  messageType: Int!
+  _id: ID
+  messageBody: String
+  username: String
+  messageType: Int
 }
 
 type Auth {

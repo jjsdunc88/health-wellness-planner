@@ -27,7 +27,7 @@ mutation login($email: String!, $password: String!) {
 `;
 
 export const MUTATION_ADDPROFILE = gql`
-mutation Mutation($profileData: ProfileInput!) {
+mutation addProfile($profileData: ProfileInput!) {
   addProfile(profileData: $profileData) {
     _id
     username
@@ -41,12 +41,6 @@ mutation Mutation($profileData: ProfileInput!) {
       activity
       goal
       diet
-    }
-    messages {
-      _id
-      messageBody
-      username
-      messageType
     }
   }
 }
@@ -90,7 +84,7 @@ mutation UserUpdate($weight: Int!, $activity: String!, $goal: String!, $diet: St
 export const MUTATION_CHAT2 = gql`
 mutation Chat2($message: String!) {
   chat2(message: $message) {
-    message
+    messageBody
   }
 }
 `;

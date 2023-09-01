@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useQuery} from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   MacroButton2Container,
   CalculateButton2,
@@ -26,9 +26,8 @@ const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
-  
-  const { loading, data } = useQuery(QUERY_ME);
-  const user = data?.me || {};
+  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+  const user = userData?.me || {};
   console.log(user);
 
   const handleButtonClick = async (event) => {
@@ -36,14 +35,14 @@ const MacroButton2 = (props) => {
     console.log(token);
 
     let messagePrompt;
-      if (token) {
-        messagePrompt = `I am a ${user.profileData[0].age} years old. I am a ${user.profileData[0].gender} that weighs ${user.profileData[0].weight} pounds and I am ${user.profileData[0].height} inches tall. I have ${user.profileData[0].diet} diet and I have a ${user.profileData[0].activity} exercise level. This is my ${user.profileData[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`;
-      } else {
-        messagePrompt = `I am a new user and I would like to generate my macros.`;
-      }
+    if (token) {
+      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`;
+    } else {
+      messagePrompt = `I am a new user and I would like to generate my macros.`;
+    }
     event.preventDefault();
     document.querySelector(".jw-modal").style.display = "block";
-    const { data } = await chat2({      
+    const { data } = await chat2({
       variables: {
         message: messagePrompt,
       },
@@ -51,36 +50,37 @@ const MacroButton2 = (props) => {
     // console.log(message);
     // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
-    setResponse(data.chat2.message);
+    setResponse(data.chat2.messageBody);
+    console.log(data.chat2.messageBody);
   };
 
   return (
-      <div>
+    <div>
       <button onClick={handleButtonClick}>Calculate My Macros</button>
       <section className="message">
-      {response ? (
+        {response ? (
           <pre>{response}</pre>
-          )
+        )
           : (
-          <div id="modal-1" class="jw-modal" style={{
-            "display": "none",
-            "position": "fixed",
-            "z-index": "10000",
-            "backgroundColor": "rgba(0, 0, 0, .75)",
-            "width": "300px",
-            "height": "300px",
-            "top": "50%",
-            "left": "50%",
-            "transform": "translate(-50%, -50%)"
-          }}>
-            <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
-              <h1 style={{ "textAlign": "center" }}>Loading...</h1>
-            </div>
-          </div>)}    
-          </section>
-      </div>
-    )
-  };
+            <div id="modal-1" class="jw-modal" style={{
+              "display": "none",
+              "position": "fixed",
+              "z-index": "10000",
+              "backgroundColor": "rgba(0, 0, 0, .75)",
+              "width": "300px",
+              "height": "300px",
+              "top": "50%",
+              "left": "50%",
+              "transform": "translate(-50%, -50%)"
+            }}>
+              <div class="jw-modal-body" style={{ "margin": "auto", "width": "50%" }}>
+                <h1 style={{ "textAlign": "center" }}>Loading...</h1>
+              </div>
+            </div>)}
+      </section>
+    </div>
+  )
+};
 
 export default MacroButton2;
 

@@ -8,14 +8,14 @@ import {
   SubmitButton,
 } from "../styled-components/ProfileData-Style";
 import { NavButton } from "../styled-components/Nav-Style";
-
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { MUTATION_ADDPROFILE } from "../utils/mutations";
-
 import Auth from '../utils/auth';
 
 export default function ProfileData() {
   const loggedIn = Auth.loggedIn()
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     age: '',
     height: '',
@@ -28,7 +28,6 @@ export default function ProfileData() {
 
   const [addProfile, { error }] = useMutation(MUTATION_ADDPROFILE);
   const [validated] = useState(false);
-
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -42,8 +41,6 @@ export default function ProfileData() {
       });
     }
     else {
-
-
       setFormState({
         ...formState,
         [name]: value,
@@ -56,19 +53,16 @@ export default function ProfileData() {
     console.log(formState);
     setShowError(false);
     setShowSuccess(false);
-
-
-
     try {
       const { data } = await addProfile({
         variables: { profileData: { ...formState } },
       });
       setShowSuccess(true);
+      navigate("/nutrition")
     } catch (err) {
       console.error(err);
       setShowError(true);
     }
-
     setFormState({
       age: '',
       height: '',
@@ -79,7 +73,7 @@ export default function ProfileData() {
       diet: '',
     })
   };
-
+  
   return (<>
     {loggedIn ? (
       <ProfileContainer>
@@ -113,7 +107,7 @@ export default function ProfileData() {
             <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies do You Have? </FormLabel>
             <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
           </FormInputGroup>
-          <SubmitButton href="/nutrition" type='submit' value='Submit' />
+          <SubmitButton type='submit' value='Submit' />
           {showError ? (
             <h4 style={{ color: "red" }}>
               Error Compiling Profile Data!
@@ -132,6 +126,5 @@ export default function ProfileData() {
       </ProfileContainer>) : (<div>
         You must be logged in.
       </div>)}
-
   </>);
 }

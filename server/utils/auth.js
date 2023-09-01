@@ -2,8 +2,8 @@ const { GraphQLError } = require('graphql');
 const tokenizer = require('jsonwebtoken');
 require('dotenv').config();
 
-const secret = 'mysecretsshhhhh';
-const expiration = '2h';
+const secret = process.env.TOKEN_SECRET;
+const expiration = process.env.TOKEN_EXPIRATION;
 
 // token secret check 
 // if (process.env.TOKEN_SECRET && process.env.TOKEN_SECRET.length > 3) {
