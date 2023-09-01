@@ -8,7 +8,7 @@ function Header(props) {
   return (
     <HeaderContainer>
       <StyledLink as={Link} to="/">FitGuide</StyledLink>
-      <Nav setPage={props.setPage} />
+      <Nav {...props} />
     </HeaderContainer>
   );
 }

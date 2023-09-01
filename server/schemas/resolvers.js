@@ -13,15 +13,17 @@ const isLoggedIn = (context) => {
 }
 
 const openai = new OpenAI({
-  apiKey: process.env.CHAT_API_KEY,
+  apiKey: process.env.CHAT_API_KEY
 });
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
+      console.log(context.user)
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id })
-        console.log(context.user)
+        // console.log(context.user)
+        console.log(user.profile[0].age)
         return user
       }
       throw AuthenicationError;
@@ -136,7 +138,7 @@ const resolvers = {
 
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
-        message: chatCompletion.choices[0].message.content
+        messageBody: chatCompletion.choices[0].message.content
       }
     },
   },
