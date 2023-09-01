@@ -11,14 +11,18 @@ import {
 import { MUTATION_LOGIN } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
+import { useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login(props) {
+export default function Login(props) { 
+  const [loggedIn, setLoggedIn] = useOutletContext();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
     password: ''
   });
 
-  const [login, { error }] = useMutation(MUTATION_LOGIN);
+  const [login, { error }] = useMutation(MUTATION_LOGIN, {fetchPolicy: "no-cache"});
 
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -49,6 +53,8 @@ export default function Login(props) {
 
       Auth.login(data.login.token);
       setShowSuccess(true);
+      setLoggedIn(true);
+      navigate("/updateprofile");
     } catch (err) {
       console.error(err);
       setShowError(true);

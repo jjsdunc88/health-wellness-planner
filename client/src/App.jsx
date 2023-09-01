@@ -15,6 +15,7 @@ import SignUp from './components/SignUp';
 import LandingPage from './components/LandingPage';
 import MealPlanButton from './components/MealPlanButton';
 import { Outlet } from 'react-router-dom';
+import Auth from './utils/auth';
 
 
 const httpLink = createHttpLink({
@@ -38,13 +39,14 @@ const client = new ApolloClient({
 
 function App() {
   const [page, setPage] = useState('LandingPage');
+  const [loggedIn, setLoggedIn] = useState(Auth.loggedIn());
   // const [login, setLogin] = useState(false);
   // const [signup, setSignup] = useState(false);
 
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <Header setPage={setPage} />
+        <Header setPage={setPage} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
         {/* {login ? <Login setPage={setPage} setLogin={setLogin} /> : null}
         {signup ? <SignUp setPage={setPage} setSignup={setSignup} /> : null}
         <Fitness user={user} /> */}
@@ -55,7 +57,7 @@ function App() {
             { page === 'LandingPage' && <LandingPage />}
         </div> */}
         {/* <Nav /> */}
-        <Outlet />
+        <Outlet context={[loggedIn, setLoggedIn]}/>
         <Footer />
       </div>
       {/* <Message /> */}
