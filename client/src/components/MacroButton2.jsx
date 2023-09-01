@@ -8,6 +8,7 @@ import {
 import { MUTATION_CHAT2 } from "../utils/mutations";
 import auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
+import loadingGif from "../assets/loading-gif.gif";
 
 // Used to test the prompt
 // const profileData = {
@@ -26,8 +27,8 @@ const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
-  
-  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+
+  const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
   console.log(user);
 
@@ -60,43 +61,66 @@ const MacroButton2 = (props) => {
       <button
         onClick={handleButtonClick}
         style={{
-          backgroundColor: "#FFA500",    
-          color: "white",               
-          padding: "10px 20px",          
-          borderRadius: "5px",           
-          border: "none",               
-          cursor: "pointer",             
-          fontWeight: "bold",            
-          fontSize: "16px",              
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)", 
+          backgroundColor: "#FFA500",
+          margin: "10px",
+          color: "white",
+          padding: "10px 20px",
+          borderRadius: "5px",
+          border: "none",
+          cursor: "pointer",
+          fontWeight: "bold",
+          fontSize: "16px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
         }}
       >
         Calculate My Macros
       </button>
       <section className="message">
         {response ? (
-          <pre style={{
-            whiteSpace: "pre-wrap",
-            maxWidth: "900px",
-            margin: "0 auto",
-            fontFamily: "calibri",
-          }}>{response}</pre>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              maxWidth: "900px",
+              margin: "0 auto",
+              fontFamily: "calibri",
+            }}
+          >
+            {response}
+          </pre>
         ) : (
-          <div id="modal-1" className="jw-modal" style={{
-            display: "none",
-            position: "fixed",
-            zIndex: "10000",
-            backgroundColor: "rgba(0, 0, 0, .75)",
-            width: "300px",
-            height: "300px",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)"
-          }}>
-            <div className="jw-modal-body" style={{ margin: "auto", width: "50%" }}>
-              <h1 style={{ textAlign: "center" }}>
-                Loading...
-                <img src="../assets/loading-gif.gif" alt="Loading GIF" />
+          <div
+            id="modal-1"
+            className="jw-modal"
+            style={{
+              display: "none",
+              position: "fixed",
+              zIndex: "10000",
+              // backgroundColor: "rgba(0, 0, 0, .75)",
+              width: "300px",
+              height: "300px",
+              top: "50%",
+              left: "38%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <div
+              className="jw-modal-body"
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "auto",
+                width: "50%",
+                position: "relative",
+                zIndex: "1",
+              }}
+            >
+              <h1 style={{ textAlign: "center", position: "relative" }}>
+                <img
+                  src={loadingGif}
+                  alt="Loading GIF"
+                  style={{ opacity: 0.5, position: "absolute", zIndex: "0" }}
+                />
+                <span style={{ position: "relative", zIndex: "1" }}>Loading...</span>
               </h1>
             </div>
           </div>
@@ -104,7 +128,6 @@ const MacroButton2 = (props) => {
       </section>
     </div>
   );
-        };  
-
+};
 export default MacroButton2;
 
