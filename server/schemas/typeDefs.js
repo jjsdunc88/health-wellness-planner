@@ -5,6 +5,7 @@ type User {
   email: String!
   profile: [Profile]!
   messages: [Message]!
+  macros: Macro
 }
 
 type Profile {
@@ -40,6 +41,11 @@ input ProfileInput {
   diet: String!
 }
 
+type Macro {
+  macros: String
+}
+
+
 type Query {
   me: User
   chat(message: String!): Message
@@ -52,6 +58,7 @@ type Mutation {
   userUpdate(weight: Int, activity: String, goal: String, diet: String): User
   chat2(message: String!): Message
   updateProfile(profileData: ProfileInput!): User
+  addMacros(macros: String!): User
 }
 `;
 
