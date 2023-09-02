@@ -15,6 +15,7 @@ import LoginPage from './pages/LoginPage';
 import LoginUpdatePage from './pages/LoginUpdatePage';
 import PreviewPage from './pages/PreviewPage';
 import ProfileDataPage from './pages/ProfileDataPage';
+import SavedPlans from './pages/SavedPlans';
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,11 @@ const router = createBrowserRouter([
       {
         path: "/preview",
         element: <PreviewPage />
-      }
+      },
+      {
+        path: '/saved',
+        element: <SavedPlans />
+      },
       // {
       //   path: '/Nav',
       //   element: <Nav />
