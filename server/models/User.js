@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const profileSchema = require('./Profile');
 const uniqueValidator = require('mongoose-unique-validator');
+const macroSchema = require('./Macro');
 
 
 const validateEmail = function (email) {
@@ -29,6 +30,7 @@ const userSchema = new Schema(
       minlength: 8,
     },
     profile: [profileSchema],
+    macros: macroSchema,
     messages: [
       {
         type: Schema.Types.ObjectId,

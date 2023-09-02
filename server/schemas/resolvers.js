@@ -1,9 +1,10 @@
-const { User, Message } = require('../models');
+const { User, Message, Macro } = require('../models');
 const { AuthenicationError } = require('../utils/auth');
 const axios = require('axios');
 const OpenAI = require('openai');
 require('dotenv').config();
 const Auth = require("../utils/auth");
+
 
 const isLoggedIn = (context) => {
   if (context && context.hasOwnProperty('user') && context.user.hasOwnProperty('_id')) {
@@ -139,6 +140,20 @@ const resolvers = {
       console.log(JSON.stringify(chatCompletion, null, 2));
       return {
         messageBody: chatCompletion.choices[0].message.content
+      }
+    },
+    addMacros: async (parent, { macro }, context) => {
+      if (loggedIn(context)) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              macros: macro
+            }
+          },
+          { new: true }
+        );
+        return userData;
       }
     },
   },
