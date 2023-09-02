@@ -6,6 +6,7 @@ import {
   FormLabel,
   FormInput,
   SubmitButton,
+  VideoBackground,
 } from "../styled-components/SignUpPage-Style";
 
 import { useMutation } from "@apollo/client";
@@ -13,6 +14,8 @@ import { MUTATION_SIGNUP } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 import Auth from '../utils/auth';
 import { useOutletContext } from "react-router-dom";
+import signupVideo from '../assets/signup-video.mp4';
+
 
 export default function SignUp() {
   const [loggedIn, setLoggedIn] = useOutletContext();
@@ -63,6 +66,9 @@ export default function SignUp() {
 
   return (
     <SignUpContainer>
+            <VideoBackground autoPlay loop muted>
+        <source src={signupVideo} type="video/mp4" />
+      </VideoBackground>
       <h2>Sign Up</h2>
       <SignUpForm onSubmit={handleFormSubmit} noValidate validated={validated}>
         <FormInputGroup>
