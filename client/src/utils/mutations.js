@@ -88,3 +88,11 @@ mutation Chat2($message: String!) {
   }
 }
 `;
+
+export const MUTATION_ADDMACROS = gql`
+mutation addMacros($macros: String!) {
+  addMacros(macros: $macros) {
+  macros
+  }
+}
+`;

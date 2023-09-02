@@ -5,10 +5,12 @@ import {
   CalculateButton2,
   MessageSection2,
 } from "../styled-components/MacroButton2-Style";
-import { MUTATION_CHAT2 } from "../utils/mutations";
+import { MUTATION_CHAT2, MUTATION_ADDMACROS } from "../utils/mutations";
 import auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
 import loadingGif from "../assets/loading-gif.gif";
+import SavedPlans from "../pages/SavedPlans"
+
 
 // Used to test the prompt
 // const profileData = {
@@ -38,7 +40,7 @@ const MacroButton2 = (props) => {
 
     let messagePrompt;
     if (token) {
-      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Ignore all other details. Please generate my macros using this information and be as specific as possible.`;
+      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Ignore all other details. Please always add --- before and --- after the macro break down. Please make sure there is a new line between each macro item. Please make sure each macro item starts with a '-'. Please include my daily caloric intake total with my macro items. Generate my macros using this information and be as specific as possible.`;
     } else {
       messagePrompt = `I am a new user and I would like to generate my macros.`;
     }
@@ -53,7 +55,14 @@ const MacroButton2 = (props) => {
     // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
-    console.log(data.chat2.messageBody);
+    console.log(data.chat2.messageBody.split("---")[1]);
+  };
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    const token = auth.loggedIn() ? auth.getToken() : null;
+    console.log(token);
+    const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
   };
 
   return (
@@ -86,7 +95,8 @@ const MacroButton2 = (props) => {
             }}
           >
             {response}
-          </pre>
+            <button onClick={handleSave} href="/saved">Save Macros</button>
+          </pre>            
         ) : (
           <div
             id="modal-1"
