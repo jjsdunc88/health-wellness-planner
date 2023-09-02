@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 export const ProfileContainer = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 50px;
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
@@ -58,4 +58,13 @@ export const SubmitButton = styled.input`
     font-size: 12px;
     padding: 6px 12px;
   }
+`;
+export const VideoBackground = styled.video`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: -1;
 `;

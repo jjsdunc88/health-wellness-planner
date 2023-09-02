@@ -6,7 +6,9 @@ import {
   FormLabel,
   FormInput,
   SubmitButton,
+  VideoBackground,
 } from "../styled-components/Login-Style";
+import loginVideo from '../assets/login-video.mp4';
 
 import { MUTATION_LOGIN } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -68,6 +70,9 @@ export default function Login(props) {
 
   return (
     <LoginContainer>
+            <VideoBackground autoPlay loop muted>
+        <source src={loginVideo} type="video/mp4" />
+      </VideoBackground>
       <h2>Login</h2>
       <LoginForm onSubmit={handleFormSubmit}>
         <FormInputGroup>

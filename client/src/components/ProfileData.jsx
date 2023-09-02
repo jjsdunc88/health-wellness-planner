@@ -6,12 +6,14 @@ import {
   FormLabel,
   FormInput,
   SubmitButton,
+  VideoBackground,
 } from "../styled-components/ProfileData-Style";
 import { NavButton } from "../styled-components/Nav-Style";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { MUTATION_ADDPROFILE } from "../utils/mutations";
 import Auth from '../utils/auth';
+import profileVideo from '../assets/profile-video.mp4';
 
 export default function ProfileData() {
   const loggedIn = Auth.loggedIn()
@@ -77,6 +79,9 @@ export default function ProfileData() {
   return (<>
     {loggedIn ? (
       <ProfileContainer>
+              <VideoBackground autoPlay loop muted>
+        <source src={profileVideo} type="video/mp4" />
+      </VideoBackground>
         <h2>For The Best Experience, Please Provide The Following Details About Yourself</h2>
         <ProfileForm onSubmit={handleProfileData} noValidate validated={validated}>
           <FormInputGroup>
