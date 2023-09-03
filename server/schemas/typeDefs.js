@@ -6,6 +6,8 @@ type User {
   profile: [Profile]!
   messages: [Message]!
   macros: Macro
+  mealPlan: MealPlan
+  workout: Workout
 }
 
 type Profile {
@@ -52,6 +54,13 @@ type Macro {
   macros: String
 }
 
+type MealPlan {
+  mealPlan: String
+}
+
+type Workout {
+  workout: String
+}
 
 type Query {
   me: User
@@ -65,6 +74,8 @@ type Mutation {
   chat2(message: String!): Message
   updateProfile(updateData: UpdateInput!): User
   addMacros(macros: String!): User
+  addMealPlan(mealPlan: String!): User
+  addWorkout(workout: String!): User
 }
 `;
 

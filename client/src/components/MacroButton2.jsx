@@ -63,6 +63,12 @@ const MacroButton2 = (props) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
     const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
+    const { data } = await macros({
+      variables: {
+        message: response,
+      },
+    });
+    console.log(data);
   };
 
   return (
