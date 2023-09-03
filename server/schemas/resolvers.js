@@ -1,4 +1,4 @@
-const { User, Message, Macro } = require('../models');
+const { User, Message, Macro, MealPlan } = require('../models');
 const { AuthenicationError } = require('../utils/auth');
 const axios = require('axios');
 const OpenAI = require('openai');
@@ -145,6 +145,34 @@ const resolvers = {
         return userData;
       }
     },
+    addMealPlan: async (parent, { mealPlan }, context) => {
+      if (isLoggedIn(context)) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              mealPlan: mealPlan
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    },
+    addWorkout: async (parent, { workout }, context) => {
+      if (isLoggedIn(context)) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              workout: workout
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    }
   },
 };
 

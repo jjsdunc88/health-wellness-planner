@@ -81,3 +81,19 @@ mutation addMacros($macros: String!) {
   }
 }
 `;
+
+export const MUTATION_ADDMEALPLAN = gql`
+mutation addMealPlan($mealPlan: String!) {
+  addMealPlan(mealPlan: $mealPlan) {
+  mealPlan
+  }
+}
+`;
+
+export const MUTATION_ADDWORKOUT = gql`
+mutation addWorkout($workout: String!) {
+  addWorkout(workout: $workout) {
+  workout
+  }
+}
+`;

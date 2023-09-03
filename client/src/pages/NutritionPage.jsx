@@ -8,6 +8,7 @@ import MealPlanButton from "../components/MealPlanButton";
 import WorkoutButton from "../components/WorkoutButton";
 
 import nutritionBackground from "../assets/nutrition-background.jpg"; 
+import { useMutation } from "@apollo/client";
 
 export default function NutritionPage() {
   const [containerWidth, setContainerWidth] = useState("50%"); 
@@ -20,6 +21,8 @@ export default function NutritionPage() {
   const handleVerticalResize = (e, direction, ref) => {
     setContainerHeight(`${ref.style.height}`);
   };
+
+  
 
   return (
     <div
