@@ -93,11 +93,11 @@ export default function ProfileData() {
             <FormInput type='number' id='height' name='height' onChange={handleChange} />
           </FormInputGroup>
           <FormInputGroup>
-            <FormLabel htmlFor='weight'>Your Weight in Pounds </FormLabel>
+            <FormLabel htmlFor='weight'>Your Weight in Pounds: </FormLabel>
             <FormInput type='number' id='weight' name='weight' onChange={handleChange} />
           </FormInputGroup>
           <FormInputGroup>
-            <FormLabel htmlFor='gender'>Male or Female </FormLabel>
+            <FormLabel htmlFor='gender'>Male or Female: </FormLabel>
             <FormInput type='text' id='gender' name='gender' onChange={handleChange} />
           </FormInputGroup>
           <FormInputGroup>
@@ -109,7 +109,7 @@ export default function ProfileData() {
             <FormInput type='text' id='goal' name='goal' onChange={handleChange} />
           </FormInputGroup>
           <FormInputGroup>
-            <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies do You Have? </FormLabel>
+            <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies Do You Have? </FormLabel>
             <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
           </FormInputGroup>
           <SubmitButton type='submit' value='Submit' />

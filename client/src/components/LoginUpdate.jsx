@@ -1,24 +1,21 @@
 import { useState } from "react";
 import {
-    LoginUpdateContainer,
-    LoginUpdateForm,
-    FormInputGroup,
-    FormLabel,
-    FormInput,
-    SubmitButton,
-  } from "../styled-components/LoginUpdatePage-Style";
+  LoginUpdateContainer,
+  LoginUpdateForm,
+  FormInputGroup,
+  FormLabel,
+  FormInput,
+  SubmitButton,
+} from "../styled-components/LoginUpdatePage-Style";
 
 import { MUTATION_UPDATEPROFILE } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
 
 export default function LoginUpdate() {
-    const loggedIn = Auth.loggedIn()
+  const loggedIn = Auth.loggedIn()
   const [formState, setFormState] = useState({
-    age: '',
-    height: '',
     weight: '',
-    gender: '',
     activity: '',
     goal: '',
     diet: '',
@@ -33,21 +30,20 @@ export default function LoginUpdate() {
   const handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    if (name === "age" || name === "height" || name === "weight") {
+    if (name === "weight") {
       setFormState({
         ...formState,
         [name]: parseInt(value),
       });
     }
     else {
-
-
       setFormState({
         ...formState,
         [name]: value,
       });
     }
-  };
+  }
+
 
   const handleProfileData = async (event) => {
     event.preventDefault();
@@ -55,11 +51,9 @@ export default function LoginUpdate() {
     setShowError(false);
     setShowSuccess(false);
 
-
-
     try {
-      const { data } = await addProfile({
-        variables: { profileData: { ...formState } },
+      const { data } = await updateProfile({
+        variables: { updateData: { ...formState } },
       });
       setShowSuccess(true);
     } catch (err) {
@@ -68,35 +62,32 @@ export default function LoginUpdate() {
     }
 
     setFormState({
-      age: '',
-      height: '',
       weight: '',
-      gender: '',
       activity: '',
       goal: '',
       diet: '',
     })
   };
 
-return (
+  return (
     <LoginUpdateContainer>
       <h2>Update Profile</h2>
       <LoginUpdateForm onSubmit={handleProfileData} noValidate validated={validated}>
         <FormInputGroup>
-          <FormLabel htmlFor='weight'>Weight: </FormLabel>
-          <FormInput type='text' id='weight' name='weight' onChange={handleChange} />
+          <FormLabel htmlFor='weight'>Your Weight in Pounds:</FormLabel>
+          <FormInput type='number' id='weight' name='weight' onChange={handleChange} />
         </FormInputGroup>
         <FormInputGroup>
-          <FormLabel htmlFor='activity level'>Activity Level: </FormLabel>
-          <FormInput type='text' id='activity' name='activity level' onChange={handleChange} />
+          <FormLabel htmlFor='activity'>How Active Are You Currently? </FormLabel>
+          <FormInput type='text' id='activity' name='activity' onChange={handleChange} />
         </FormInputGroup>
         <FormInputGroup>
-          <FormLabel htmlFor='diet'>Diet: </FormLabel>
+          <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies Do You Have? </FormLabel>
           <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
         </FormInputGroup>
         <FormInputGroup>
-          <FormLabel htmlFor='goal'>Goals </FormLabel>
-          <FormInput type='text' id='goal' name='goals' onChange={handleChange} />
+          <FormLabel htmlFor='goal'>What is Your End Goal? </FormLabel>
+          <FormInput type='text' id='goal' name='goal' onChange={handleChange} />
         </FormInputGroup>
         <SubmitButton type='submit' value='Submit' />
         {showError ? (
@@ -116,4 +107,4 @@ return (
       </LoginUpdateForm>
     </LoginUpdateContainer>
   );
-}
+};

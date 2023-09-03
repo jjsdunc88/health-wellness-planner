@@ -47,7 +47,7 @@ const resolvers = {
     //   }
     // },
   },
-  
+
   Mutation: {
     signUp: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
@@ -56,7 +56,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }, context) => {
       if (email) {
-        const user = await User.findOne( { email });
+        const user = await User.findOne({ email });
         if (!user) {
           throw new Error('Error: No user found with this email address');
         }
@@ -74,53 +74,42 @@ const resolvers = {
         console.log(profileData)
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: {profile: profileData}},
+          { $push: { profile: profileData } },
           {
             new: true,
             runValidators: true,
           }
         );
-        
+
         return user
 
       }
       throw AuthenicationError;
     },
-    updateProfile: async (parent, { profileData }, context) => {
+    updateProfile: async (parent, { updateData }, context) => {
       if (context.user) {
-        console.log(profileData)
+        console.log(updateData)
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: {profile: profileData}},
+          {
+            $set:
+            {
+              "profile.0.weight": updateData.weight,
+              "profile.0.activity": updateData.activity,
+              "profile.0.goal": updateData.goal,
+              "profile.0.diet": updateData.diet
+            }
+          },
           {
             new: true,
             runValidators: true,
           }
         );
-        
+
         return user
 
       }
       throw AuthenicationError;
-    },
-    userUpdate: async (parent, { weight, activity, goal, diet }, context) => {
-      if (loggedIn(context)) {
-        const userData = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          {
-            $set: {
-              profileData: {
-                weight,
-                activity,
-                goal,
-                diet
-              }
-            }
-          },
-          { new: true }
-        );
-        return userData;
-      }
     },
     chat2: async (parent, { message }) => {
       console.log(message);
@@ -143,7 +132,7 @@ const resolvers = {
       }
     },
     addMacros: async (parent, { macro }, context) => {
-      if (loggedIn(context)) {
+      if (isLoggedIn(context)) {
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
