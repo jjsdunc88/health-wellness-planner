@@ -8,6 +8,12 @@ export const ProfileContainer = styled.div`
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  h2 {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1);
   
   @media (max-width: 768px) {
     margin: 220px auto;
@@ -21,17 +27,23 @@ export const ProfileForm = styled.form`
 `;
 
 export const FormInputGroup = styled.div`
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; 
 `;
 
 export const FormLabel = styled.label`
   font-weight: bold;
+  font-family: calibri;
+  font-size: 18px;
 `;
 
 export const FormInput = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
+  align-items: center;
   border-radius: 5px;
 `;
 
@@ -67,4 +79,29 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 z-index: -1;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px; 
+`;
+
+export const RadioInput = styled.input`
+  margin-right: 10px; 
+  order: 2;
+`;
+
+export const RadioValue = styled.span`
+  font-family: calibri;
+  order: 1;
+  margin-right: 10px;
+`;
+
+export const FormInputGroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; 
 `;
