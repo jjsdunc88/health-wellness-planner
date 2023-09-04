@@ -165,10 +165,10 @@ export default function ProfileData() {
                   type='radio'
                   id='activity4'
                   name='activity'
-                  value='daily exercise of intense exercise 3-4 times per week'
+                  value='daily exercise or intense exercise 3-4 times per week'
                   onChange={handleChange}
                 />
-                <RadioValue>Daily exercise of intense exercise 3-4 times per week</RadioValue>
+                <RadioValue>Daily exercise or intense exercise 3-4 times per week</RadioValue>
               </RadioLabel>
               <RadioLabel>
                 <RadioInput
