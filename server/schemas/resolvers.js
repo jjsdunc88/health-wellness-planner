@@ -131,13 +131,15 @@ const resolvers = {
         messageBody: chatCompletion.choices[0].message.content
       }
     },
-    addMacros: async (parent, { macro }, context) => {
+
+    addMacros: async (parent, { macros }, context) => {
       if (isLoggedIn(context)) {
+        console.log("hello!!!");
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $set: {
-              macros: macro
+              macros: macros
             }
           },
           { new: true }
@@ -145,6 +147,7 @@ const resolvers = {
         return userData;
       }
     },
+
     addMealPlan: async (parent, { mealPlan }, context) => {
       if (isLoggedIn(context)) {
         const userData = await User.findOneAndUpdate(
