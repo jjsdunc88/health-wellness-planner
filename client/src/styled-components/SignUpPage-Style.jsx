@@ -26,6 +26,7 @@ export const FormInputGroup = styled.div`
 
 export const FormLabel = styled.label`
   font-weight: bold;
+  font-family: calibri;
 `;
 
 export const FormInput = styled.input`

@@ -77,7 +77,12 @@ mutation Chat2($message: String!) {
 export const MUTATION_ADDMACROS = gql`
 mutation addMacros($macros: String!) {
   addMacros(macros: $macros) {
-  macros
+    _id
+    username
+    email
+    macrosData {
+      myMacros
+    }
   }
 }
 `;
@@ -85,7 +90,12 @@ mutation addMacros($macros: String!) {
 export const MUTATION_ADDMEALPLAN = gql`
 mutation addMealPlan($mealPlan: String!) {
   addMealPlan(mealPlan: $mealPlan) {
-  mealPlan
+    _id
+    username
+    email
+    mealPlanData {
+      myMealPlans
+    }
   }
 }
 `;
@@ -93,7 +103,12 @@ mutation addMealPlan($mealPlan: String!) {
 export const MUTATION_ADDWORKOUT = gql`
 mutation addWorkout($workout: String!) {
   addWorkout(workout: $workout) {
-  workout
+    _id
+    username
+    email
+    workoutData {
+      myWorkouts
+    }
   }
 }
 `;

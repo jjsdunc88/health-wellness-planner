@@ -62,9 +62,12 @@ export const WelcomeHeading = styled.h2`
 `;
 
 export const WelcomeQuote = styled.h3`
-  font-size: 18px;
+  font-size: 16px;
   color: #666;
+  font-style: italic;
+  font-style: bold;
   margin-bottom: 20px;
+  font-family: calibri;
 `;
 
 export const StartButton = styled.button`

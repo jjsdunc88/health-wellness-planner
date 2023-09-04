@@ -23,7 +23,7 @@ import SavedPlans from "../pages/SavedPlans"
 //   'diet': 'no restrictions',
 // };
 
-
+let myMacros;
 
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
@@ -56,16 +56,19 @@ const MacroButton2 = (props) => {
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
     console.log(data.chat2.messageBody.split("---")[1]);
+    myMacros = data.chat2.messageBody.split("---")[1];
   };
 
+  const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
-    const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
+    console.log(myMacros);
+
     const { data } = await macros({
       variables: {
-        message: response,
+        macros: myMacros,
       },
     });
     console.log(data);
@@ -102,7 +105,7 @@ const MacroButton2 = (props) => {
           >
             {response}
             <button onClick={handleSave} href="/saved">Save Macros</button>
-          </pre>            
+          </pre>
         ) : (
           <div
             id="modal-1"
@@ -146,4 +149,3 @@ const MacroButton2 = (props) => {
   );
 };
 export default MacroButton2;
-

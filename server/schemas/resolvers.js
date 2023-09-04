@@ -131,13 +131,14 @@ const resolvers = {
         messageBody: chatCompletion.choices[0].message.content
       }
     },
-    addMacros: async (parent, { macro }, context) => {
-      if (isLoggedIn(context)) {
+    addMacros: async (parent, { macros }, context) => {
+      if (context.user) {
+        console.log("hello!!!");
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $set: {
-              macros: macro
+              "macrosData.myMacros": macros
             }
           },
           { new: true }
@@ -146,12 +147,12 @@ const resolvers = {
       }
     },
     addMealPlan: async (parent, { mealPlan }, context) => {
-      if (isLoggedIn(context)) {
+      if (context.user) {
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $set: {
-              mealPlan: mealPlan
+              "mealPlanData.myMealPlans": mealPlan
             }
           },
           { new: true }
@@ -160,12 +161,12 @@ const resolvers = {
       }
     },
     addWorkout: async (parent, { workout }, context) => {
-      if (isLoggedIn(context)) {
+      if (context.user) {
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $set: {
-              workout: workout
+              "workoutData.myWorkouts": workout
             }
           },
           { new: true }

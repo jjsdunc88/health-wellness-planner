@@ -74,20 +74,31 @@ export default function LoginUpdate() {
       <h2>Update Profile</h2>
       <LoginUpdateForm onSubmit={handleProfileData} noValidate validated={validated}>
         <FormInputGroup>
-          <FormLabel htmlFor='weight'>Your Weight in Pounds:</FormLabel>
+          <FormLabel htmlFor='weight'>What is Your Current Weight in Pounds</FormLabel>
           <FormInput type='number' id='weight' name='weight' onChange={handleChange} />
         </FormInputGroup>
         <FormInputGroup>
-          <FormLabel htmlFor='activity'>How Active Are You Currently? </FormLabel>
-          <FormInput type='text' id='activity' name='activity' onChange={handleChange} />
+          <FormLabel htmlFor='activity'>What is Your New Activity level?</FormLabel>
+          <FormInput type='radio' id='activity' name='activity' value='little or no exercise' onChange={handleChange} />Little or no exercise
+            <FormInput type='radio' id='activity' name='activity' value='exercise 1-3 times per week' onChange={handleChange} />Exercise 1-3 times per week
+            <FormInput type='radio' id='activity' name='activity' value='exercise 4-5 times per week' onChange={handleChange} />Exercise 4-5 times per week
+            <FormInput type='radio' id='activity' name='activity' value='daily exercise of intense exercise 3-4 times per week' onChange={handleChange} />Daily exercise of intense exercise 3-4 times per week
+            <FormInput type='radio' id='activity' name='activity' value='intense exercise 6-7 times per week' onChange={handleChange} />Intense exercise 3-4 times per week
+            <FormInput type='radio' id='activity' name='activity' value='very intense exercise daily or physical job' onChange={handleChange} />Very intense exercise daily or physical job
         </FormInputGroup>
         <FormInputGroup>
           <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies Do You Have? </FormLabel>
           <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
         </FormInputGroup>
         <FormInputGroup>
-          <FormLabel htmlFor='goal'>What is Your End Goal? </FormLabel>
-          <FormInput type='text' id='goal' name='goal' onChange={handleChange} />
+          <FormLabel htmlFor='goal'>What is Your New Goal? </FormLabel>
+          <FormInput type='radio' id='goal' name='goal' value='maintain weight' onChange={handleChange} />Maintain Weight
+            <FormInput type='radio' id='goal' name='goal' value='mild weight loss of 1/2 lbs. per week' onChange={handleChange} />Mild weight loss of 1/2 lbs. per week
+            <FormInput type='radio' id='goal' name='goal' value='Weight loss of 1 lbs. per week' onChange={handleChange} />Weight loss of 1 lbs. per week
+            <FormInput type='radio' id='goal' name='goal' value='extreme weight loss of 2 lbs. per week' onChange={handleChange} />Extreme weight loss of 2 lbs. per week
+            <FormInput type='radio' id='goal' name='goal' value='mild weight gain of 1/2 lbs. per week' onChange={handleChange} />Mild weight gain of 1/2 lbs. per week
+            <FormInput type='radio' id='goal' name='goal' value='Weight gain of 1 lbs. per week' onChange={handleChange} />Weight gain of 1 lbs. per week
+            <FormInput type='radio' id='goal' name='goal' value='extreme weight gain of 2 lbs. per week' onChange={handleChange} />Extreme weight gain of 2 lbs. per week
         </FormInputGroup>
         <SubmitButton type='submit' value='Submit' />
         {showError ? (

@@ -22,6 +22,8 @@ import { QUERY_ME } from '../utils/queries';
 //   'diet': 'no restrictions',
 // };
 
+let myMealPlans;
+
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
 
@@ -50,16 +52,20 @@ const MealPlanButton = (props) => {
     });
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
+    console.log(data.chat2.messageBody)
+    myMealPlans = data.chat2.messageBody;
   };
 
+  const [mealPlans, setMealPlans] = useMutation(MUTATION_ADDMEALPLAN);
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
-    const [mealPlans, setMealPlans] = useMutation(MUTATION_ADDMEALPLAN);
+    console.log(myMealPlans)
+
     const { data } = await mealPlans({
       variables: {
-        message: response,
+        mealPlan: myMealPlans,
       },
     });
     console.log(data);
