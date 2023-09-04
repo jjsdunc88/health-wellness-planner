@@ -15,11 +15,14 @@ query Me {
       goal
       diet
     }
-    messages {
-      _id
-      messageBody
-      username
-      messageType
+    macrosData {
+      myMacros
+    }
+    mealPlanData {
+      myMealPlans
+    }
+    workoutData {
+      myWorkouts
     }
   }
 }

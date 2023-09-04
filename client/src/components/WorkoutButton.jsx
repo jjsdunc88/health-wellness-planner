@@ -9,6 +9,7 @@ import { MUTATION_ADDWORKOUT, MUTATION_CHAT2 } from "../utils/mutations";
 import auth from "../utils/auth";
 import loadingGif from "../assets/loading-gif.gif";
 import { QUERY_ME } from '../utils/queries';
+import SavedPlans from "../pages/SavedPlans"
 
 // Used to test the prompt
 // const profileData = {
@@ -20,6 +21,8 @@ import { QUERY_ME } from '../utils/queries';
 //   'goal': ' weight loss',
 //   'diet': 'no restrictions',
 // };
+
+let myWorkouts;
 
 const WorkoutButton = (props) => {
   const [response, setResponse] = useState("");
@@ -51,16 +54,19 @@ const WorkoutButton = (props) => {
     // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
+    console.log(data.chat2.messageBody);
+    myWorkouts = data.chat2.messageBody;
   };
 
+  const [workoutPlans, setWorkoutPlans] = useMutation(MUTATION_ADDWORKOUT);
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
-    const [workoutPlans, setWorkoutPlans] = useMutation(MUTATION_ADDWORKOUT);
+    
     const { data } = await workoutPlans({
       variables: {
-        message: response,
+        workout: myWorkouts,
       },
     });
     console.log(data);

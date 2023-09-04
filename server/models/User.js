@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const profileSchema = require('./Profile');
 const uniqueValidator = require('mongoose-unique-validator');
 const macroSchema = require('./Macro');
+const mealPlanSchema = require('./MealPlan');
+const workoutSchema = require('./Workout');
 
 
 const validateEmail = function (email) {
@@ -30,13 +32,9 @@ const userSchema = new Schema(
       minlength: 8,
     },
     profile: [profileSchema],
-    macros: macroSchema,
-    messages: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Message',
-      }
-    ],
+    macrosData: macroSchema,
+    mealPlanData: mealPlanSchema,
+    workoutData: workoutSchema,
   },
   {
     toJSON: {
