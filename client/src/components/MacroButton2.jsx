@@ -58,14 +58,15 @@ const MacroButton2 = (props) => {
     console.log(data.chat2.messageBody.split("---")[1]);
   };
 
+  const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
     console.log(token);
-    const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
+        
     const { data } = await macros({
       variables: {
-        message: response,
+        macros: response,
       },
     });
     console.log(data);
@@ -146,4 +147,3 @@ const MacroButton2 = (props) => {
   );
 };
 export default MacroButton2;
-
