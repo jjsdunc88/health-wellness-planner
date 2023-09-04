@@ -16,6 +16,7 @@ export const NutritionHeading = styled.h1`
   font-size: 32px;
   color: #333;
   margin-bottom: 20px;
+  font-family: calibri;
   
   @media (max-width: 768px) {
     font-size: 28px; 
