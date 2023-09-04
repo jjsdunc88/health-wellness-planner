@@ -4,10 +4,9 @@ type User {
   username: String!
   email: String!
   profile: [Profile]!
-  messages: [Message]!
-  macros: Macro
-  mealPlan: MealPlan
-  workout: Workout
+  macrosData: Macro
+  mealPlanData: MealPlan
+  workoutData: Workout
 }
 
 type Profile {
@@ -51,15 +50,15 @@ input UpdateInput {
 }
 
 type Macro {
-  macros: String
+  myMacros: String
 }
 
 type MealPlan {
-  mealPlan: String
+  myMealPlans: String
 }
 
 type Workout {
-  workout: String
+  myWorkouts: String
 }
 
 type Query {

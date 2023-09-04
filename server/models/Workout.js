@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
 
 const workoutSchema = new Schema({
-  macros: {
+  myWorkouts: {
     type: String,
     required: false,
   }
