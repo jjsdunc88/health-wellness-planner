@@ -6,7 +6,7 @@ import {
   CalculateMealPlanButton,
   MealPlanMessageSection,
 } from "../styled-components/MealPlanButton-Style";
-import { MUTATION_CHAT2 } from "../utils/mutations";
+import { MUTATION_CHAT2, MUTATION_ADDMEALPLAN } from "../utils/mutations";
 import auth from "../utils/auth";
 import loadingGif from "../assets/loading-gif.gif";
 import { QUERY_ME } from '../utils/queries';
@@ -37,7 +37,7 @@ const MealPlanButton = (props) => {
 
     let messagePrompt;
     if (token) {
-      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}.Based on the macros, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
+      messagePrompt = `I am a ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. My goal is ${user.profile[0].goal}.Based on the macros, generate this week's meal plan. Please return as a bulleted list with recommended serving sizes per meal with days of the week.`;
     } else {
       messagePrompt = `I am a new user and I would like to generate a weekly meal plan.`;
     }
@@ -50,6 +50,19 @@ const MealPlanButton = (props) => {
     });
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
+  };
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    const token = auth.loggedIn() ? auth.getToken() : null;
+    console.log(token);
+    const [mealPlans, setMealPlans] = useMutation(MUTATION_ADDMEALPLAN);
+    const { data } = await mealPlans({
+      variables: {
+        message: response,
+      },
+    });
+    console.log(data);
   };
 
   return (
@@ -82,6 +95,7 @@ const MealPlanButton = (props) => {
             }}
           >
             {response}
+            <button onClick={handleSave} href="/saved">Save Meal Plan</button>
           </pre>
         ) : (
           <div

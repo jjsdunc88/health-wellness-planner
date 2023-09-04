@@ -47,35 +47,20 @@ mutation addProfile($profileData: ProfileInput!) {
 `;
 
 export const MUTATION_UPDATEPROFILE = gql` 
-mutation Mutation($profileData: ProfileInput!) {
-  updateProfile(profileData: $profileData) {
+mutation Mutation($updateData: UpdateInput!) {
+  updateProfile(updateData: $updateData) {
     _id
     email
     username
     profile {
       _id
-      activity
       age
-      diet
-      goal
+      height
       weight
-    }
-    messages {
-      _id
-      messageBody
-      messageType
-      username
-    }
-  }
-}
-`;
-
-export const MUTATION_USERUPDATE = gql`
-mutation UserUpdate($weight: Int!, $activity: String!, $goal: String!, $diet: String!) {
-  userUpdate (weight: $weight, activity: $activity, goal: $goal, diet: $diet) {
-  token
-  user {
-    Profile
+      gender
+      activity
+      goal
+      diet
     }
   }
 }
@@ -93,6 +78,22 @@ export const MUTATION_ADDMACROS = gql`
 mutation addMacros($macros: String!) {
   addMacros(macros: $macros) {
   macros
+  }
+}
+`;
+
+export const MUTATION_ADDMEALPLAN = gql`
+mutation addMealPlan($mealPlan: String!) {
+  addMealPlan(mealPlan: $mealPlan) {
+  mealPlan
+  }
+}
+`;
+
+export const MUTATION_ADDWORKOUT = gql`
+mutation addWorkout($workout: String!) {
+  addWorkout(workout: $workout) {
+  workout
   }
 }
 `;

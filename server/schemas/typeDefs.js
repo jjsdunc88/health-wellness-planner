@@ -6,10 +6,12 @@ type User {
   profile: [Profile]!
   messages: [Message]!
   macros: Macro
+  mealPlan: MealPlan
+  workout: Workout
 }
 
 type Profile {
-  _id: ID
+  _id: ID!
   age: Int!
   height: Int!
   weight: Int!
@@ -41,10 +43,24 @@ input ProfileInput {
   diet: String!
 }
 
+input UpdateInput {
+  weight: Int!
+  activity: String!
+  goal: String!
+  diet: String!
+}
+
 type Macro {
   macros: String
 }
 
+type MealPlan {
+  mealPlan: String
+}
+
+type Workout {
+  workout: String
+}
 
 type Query {
   me: User
@@ -55,10 +71,11 @@ type Mutation {
   signUp(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addProfile(profileData: ProfileInput!): User
-  userUpdate(weight: Int, activity: String, goal: String, diet: String): User
   chat2(message: String!): Message
-  updateProfile(profileData: ProfileInput!): User
+  updateProfile(updateData: UpdateInput!): User
   addMacros(macros: String!): User
+  addMealPlan(mealPlan: String!): User
+  addWorkout(workout: String!): User
 }
 `;
 
