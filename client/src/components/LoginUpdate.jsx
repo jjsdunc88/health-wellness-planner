@@ -82,7 +82,7 @@ export default function LoginUpdate() {
           <FormInput type='radio' id='activity' name='activity' value='little or no exercise' onChange={handleChange} />Little or no exercise
             <FormInput type='radio' id='activity' name='activity' value='exercise 1-3 times per week' onChange={handleChange} />Exercise 1-3 times per week
             <FormInput type='radio' id='activity' name='activity' value='exercise 4-5 times per week' onChange={handleChange} />Exercise 4-5 times per week
-            <FormInput type='radio' id='activity' name='activity' value='daily exercise of intense exercise 3-4 times per week' onChange={handleChange} />Daily exercise of intense exercise 3-4 times per week
+            <FormInput type='radio' id='activity' name='activity' value='daily exercise or intense exercise 3-4 times per week' onChange={handleChange} />Daily exercise of intense exercise 3-4 times per week
             <FormInput type='radio' id='activity' name='activity' value='intense exercise 6-7 times per week' onChange={handleChange} />Intense exercise 3-4 times per week
             <FormInput type='radio' id='activity' name='activity' value='very intense exercise daily or physical job' onChange={handleChange} />Very intense exercise daily or physical job
         </FormInputGroup>
