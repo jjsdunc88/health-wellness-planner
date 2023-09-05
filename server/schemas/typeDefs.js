@@ -23,8 +23,21 @@ type Profile {
 type Message {
   _id: ID
   messageBody: String
-  username: String
-  messageType: Int
+}
+
+type Macro {
+  _id: ID
+  myMacros: String
+}
+
+type MealPlan {
+  _id: ID
+  myMealPlans: String
+}
+
+type Workout {
+  _id: ID
+  myWorkouts: String
 }
 
 type Auth {
@@ -49,21 +62,8 @@ input UpdateInput {
   diet: String!
 }
 
-type Macro {
-  myMacros: String
-}
-
-type MealPlan {
-  myMealPlans: String
-}
-
-type Workout {
-  myWorkouts: String
-}
-
 type Query {
   me: User
-  chat(message: String!): Message
 }
 
 type Mutation {

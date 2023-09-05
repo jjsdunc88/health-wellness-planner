@@ -27,11 +27,3 @@ query Me {
   }
 }
 `;
-
-export const QUERY_CHAT = gql`
-query Chat($message: String!) {
-  chat(message: $message) {
-    message
-  }
-}
-`;

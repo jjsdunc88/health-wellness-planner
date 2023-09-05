@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import Message from './components/Message';
 import { setContext } from '@apollo/client/link/context';
 import MacroButton2 from './components/MacroButton2'
 import Header from './components/Header';
@@ -40,28 +39,14 @@ const client = new ApolloClient({
 function App() {
   const [page, setPage] = useState('LandingPage');
   const [loggedIn, setLoggedIn] = useState(Auth.loggedIn());
-  // const [login, setLogin] = useState(false);
-  // const [signup, setSignup] = useState(false);
 
   return (
     <ApolloProvider client={client}>
       <div className="App">
         <Header setPage={setPage} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-        {/* {login ? <Login setPage={setPage} setLogin={setLogin} /> : null}
-        {signup ? <SignUp setPage={setPage} setSignup={setSignup} /> : null}
-        <Fitness user={user} /> */}
-        {/* <div id='main'>
-            { page === 'Fitness' && <Fitness /> }
-            { page === 'Login' && <Login /> }
-            { page === 'SignUp' && <SignUp /> }
-            { page === 'LandingPage' && <LandingPage />}
-        </div> */}
-        {/* <Nav /> */}
         <Outlet context={[loggedIn, setLoggedIn]}/>
         <Footer />
       </div>
-      {/* <Message /> */}
-      {/* <MacroButton /> */}
     </ApolloProvider>
   )
 }

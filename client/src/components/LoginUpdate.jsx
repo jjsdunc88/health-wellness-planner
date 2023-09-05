@@ -53,7 +53,6 @@ export default function LoginUpdate() {
 
   const handleProfileData = async (event) => {
     event.preventDefault();
-    console.log(formState);
     setShowError(false);
     setShowSuccess(false);
 

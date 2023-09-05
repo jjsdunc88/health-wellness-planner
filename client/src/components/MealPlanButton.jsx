@@ -11,17 +11,6 @@ import auth from "../utils/auth";
 import loadingGif from "../assets/loading-gif.gif";
 import { QUERY_ME } from '../utils/queries';
 
-// Used to test the prompt
-// const profileData = {
-//   'age': 25,
-//   'height': 72,
-//   'weight': 180,
-//   'gender': 'male',
-//   'activity': 'moderate',
-//   'goal': 'lose',
-//   'diet': 'no restrictions',
-// };
-
 let myMealPlans;
 
 const MealPlanButton = (props) => {
@@ -29,13 +18,11 @@ const MealPlanButton = (props) => {
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
-  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+  const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
-  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
 
     let messagePrompt;
     if (token) {
@@ -52,7 +39,6 @@ const MealPlanButton = (props) => {
     });
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
-    console.log(data.chat2.messageBody)
     myMealPlans = data.chat2.messageBody;
   };
 
@@ -60,15 +46,12 @@ const MealPlanButton = (props) => {
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
-    console.log(myMealPlans)
 
     const { data } = await mealPlans({
       variables: {
         mealPlan: myMealPlans,
       },
     });
-    console.log(data);
   };
 
   return (

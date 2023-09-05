@@ -9,7 +9,7 @@ const SavedPlans = () => {
   const userData = data?.me || {};
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  // if (error) return <div>{error}</div>;
   return (
     <>
       {userData && (

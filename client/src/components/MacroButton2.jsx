@@ -9,38 +9,19 @@ import { MUTATION_CHAT2, MUTATION_ADDMACROS } from "../utils/mutations";
 import auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
 import loadingGif from "../assets/loading-gif.gif";
-import SavedPlans from "../pages/SavedPlans"
-import { NavButton } from "../styled-components/Nav-Style";
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
-
-
-// Used to test the prompt
-// const profileData = {
-//   'age': 25,
-//   'height': 72,
-//   'weight': 180,
-//   'gender': 'male',
-//   'activity': 'moderate',
-//   'goal': ' weight loss',
-//   'diet': 'no restrictions',
-// };
 
 let myMacros;
 
 const MacroButton2 = (props) => {
-  const navigate = useNavigate();
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
   const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
-  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
 
     let messagePrompt;
     if (token) {
@@ -55,21 +36,15 @@ const MacroButton2 = (props) => {
         message: messagePrompt,
       },
     });
-    // console.log(message);
-    // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
-    console.log(data.chat2.messageBody);
     myMacros = data.chat2.messageBody.split("---")[1];
   };
 
   const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
-  // const [displaySavedMacros, setDisplaySavedMacros] = useState(false)
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
-    console.log(myMacros);
 
     const { data } = await macros({
       variables: {

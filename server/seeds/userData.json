@@ -1,26 +1,27 @@
 [
   {
-    "username": "johndoe12",
-    "email": "johndoe@test.com",
+    "username": "janedoe12",
+    "email": "janedoe@test.com",
     "password": "testing123",
-    "profileData": [
+    "profile": [
       {
         "age": 25,
-        "height": 72,
-        "weight": 180,
-        "gender": "male",
-        "activity": "moderate",
-        "goal": "lose weight",
-        "diet": "no restrictions"
+        "height": 65,
+        "weight": 200,
+        "gender": "female",
+        "activity": "exercise 4-5 times per week",
+        "goal": "maintain weight",
+        "diet": "none"
       }
     ],
-    "messages": [
-      {
-        "_id": "64ee6d72c81cdd20155a440e",
-        "messageBody": "Based off the information you provided and using the Mifflin-St Jeor equation to estimate your Basal Metabolic Rate (BMR), and considering your moderate exercise level, your estimated calorie intake should be around 2600 calories to maintain your current weight.\n\nSince you're looking for weight loss, you need a calorie deficit. For healthy and sustainable weight loss, a deficit of 500 to 1000 calories per day is recommended, which equates to losing 1 to 2 pounds per week. Let's take a moderate approach and target a daily intake of 2100 calories.\n\nYour macros would break down as follows:\n- Proteins: Aim for around 1 gram per pound of body weight when trying to lose weight. In your case, this would be approximately 180 grams of protein per day, equating to 720 calories.\n- Fats: Aim for around 0.3 to 0.4 grams per pound of body weight. In your case, that's between 54 to 72 grams of fat per day, equating to around 500-650 calories. \n- Carbs: The remaining calories in your diet, after protein and fat are considered, will come from carbohydrates. So, after subtracting protein and fat calories from your total daily calorie intake, you'd have about 730-880 calories left for carbs, equating to around 182-220 grams of carbs.\n\nRemember, these numbers are rough estimates and one-size does not fit all. Also, listen to your body and adjust as necessary. Good luck on your weight loss journey!",
-        "username": "johndoe12",
-        "messageType": 1
-      }
-    ]
+    "macrosData": {
+      "myMacros": "Total Daily Caloric Intake: ~2100-2300 calories. Proteins: 150 g - 200 g (600 - 800 calories). This is crucial for muscle recovery and growth. Fats: 70 g - 92 g (630 - 830kcal). Healthy fats help with metabolism and hormone production. Carbohydrates: 195 g - 275 g (780 - 1100 calories). Carbs provide energy for your workouts and daily activities."
+    },
+    "mealPlanData": {
+      "myMealPlans": "Based on the information you provided and considering a standard macronutrient distribution of 40% Protein, 30% Carbohydrate, and 30% Fat, here is a meal plan for you to maintain your weight: **Monday:** - Breakfast: 1 serving of scrambled eggs (2 eggs) with 1 small avocado and 2 slices of whole wheat toast. - Lunch: 1 serving of quinoa salad with grilled chicken (4oz), cherry tomatoes, cucumber and a light vinaigrette. - Dinner: 1 serving of baked salmon (4oz) with roasted sweet potato (1 cup) and steamed broccoli (1 cup). - Snacks: 1 medium apple and 10 raw almonds. **Tuesday:** - Breakfast: 1 cup of Greek yogurt with 1/2 cup mixed berries and a tablespoon of honey. - Lunch: 1 serving of grilled turkey sandwich with whole grain bread and a side salad. - Dinner: 1 serving of grilled shrimp (4oz) with a 1 cup quinoa and grilled vegetables. - Snacks: 1 banana and 1 oz of mixed nuts. **Wednesday:** - Breakfast: 2 whole grain pancakes with a tablespoon of peanut butter and 1 sliced banana. - Lunch: 1 serving of grilled chicken salad with assorted vegetables and light dressing. - Dinner: 1 serving of roasted chicken breast (4oz) with 1 cup of mashed sweet potatoes and mixed steamed vegetables. - Snacks: Greek yogurt with fresh berries. **Thursday:** - Breakfast: 1 serving of vegetable omelet with 2 slices of whole wheat bread.- Lunch: 1 serving of tuna salad with light mayo on whole grain bread, and a side salad. - Dinner: 1 serving of pork tenderloin (4oz) with 1 cup brown rice and roasted vegetables. - Snacks: 1 cup of sliced fruit (apples/pears/banana). **Friday:** - Breakfast: 1 serving of oatmeal (1/2 cup dry oats) cooked in almond milk, with 1/2 sliced banana and a spoonful of almond butter.- Lunch: 1 serving of grilled chicken wrap with whole grain tortilla and a side salad. - Dinner: 1 serving of seared salmon (4oz) with 1 cup quinoa and mixed steamed vegetables. - Snacks: 1 small yogurt with a handful of blueberries. **Saturday:** - Breakfast: 2 scrambled eggs with 1 cup of cooked spinach and a slice of whole wheat toast. - Lunch: 1 serving of turkey and cheese sandwich on whole grain bread with a side of veggies. - Dinner: 1 serving of shrimp stir fry with 1 cup of brown rice. - Snacks: 1 fresh fruit and a handful of nuts. **Sunday:** - Breakfast: 1 serving of protein smoothie (1 scoop of protein powder, 1 banana, spinach, almond milk). - Lunch: 1 serving of chicken salad with a mix of your favorite veggies and vinaigrette.- Dinner: 1 serving of grilled steak (4oz) with 1 cup of sweet potato and steamed asparagus. - Snacks: Greek yogurt with fresh mixed berries."
+    },
+    "workoutData": {
+      "myWorkouts": "Based on your age, gender, weight, and height, with a fitness goal of maintaining your weight and a moderate-high exercise level, I suggest something along these lines:- Day 1: Upper body and core strength exercises - Warm Up: 10 minutes of light cardio (jogging, jump roping, or cycling) - Exercises: - 3 sets of 10 reps each of push ups - 3 sets of 15 reps each of dumbbell rows - 3 sets of 10 reps of overhead tricep extensions - 3 sets of 15 reps of abdominal crunches - 3 sets of 15 reps of plank shoulder taps - Cool Down: 10 minutes of stretching, focusing on the upper body and core area Day 2: Lower body and core strength exercises - Warm Up: 10 minutes of light cardio (jumping jacks, high knees, or mountain climbers) - Exercises: - 3 sets of 10 reps each of squats - 3 sets of 10 reps each of lunges (per leg) - 3 sets of 15 reps of glute bridges - 3 sets of 10 reps of calf raises - 3 sets of 20 reps of bicycle crunches - Cool Down: 10 minutes of stretching, focusing on the lower body and core area Day 3: Cardiovascular exercise - Warm Up: 10 minutes of light jogging and dynamic stretching - Main Exercise: 30 to 45 minutes of moderate-intensity cardio of your choice (running, swimming, cycling, etc.) - Cool Down: 10 minutes of light walking and stretching Day 4: Rest Day Day 5: Total body strength exercises - Warm Up: 10 minutes of light cardio like skipping, walking, or light cycling - Exercises: - 3 sets of 8 reps of kettlebell swings - 3 sets of 10 reps each of burpees - 3 sets of 10 reps of deadlifts - 3 sets of 10 reps of overhead press - Cool Down: 10 minutes of full body stretching Day 6: Cardiovascular exercise - Warm Up: 10 minutes of light jogging and dynamic stretching - Main Exercise: 30 to 45 minutes of high-intensity interval training (HIIT) - Cool Down: 10 minutes of light walking and deep breathing Day 7: Rest Day"
+    }
   }
 ]
