@@ -75,6 +75,9 @@ type Mutation {
   addMacros(macros: String!): User
   addMealPlan(mealPlan: String!): User
   addWorkout(workout: String!): User
+  deleteMacros: User
+  deleteMealPlan: User
+  deleteWorkout: User
 }
 `;
 

@@ -146,7 +146,49 @@ const resolvers = {
         );
         return userData;
       }
-    }
+    },
+    deleteMacros: async (parent, context) => {
+      if (context.user) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              "macrosData.myMacros": {}
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    },
+    deleteMealPlan: async (parent, context) => {
+      if (context.user) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              "mealPlanData.myMealPlans": {}
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    },
+    deleteWorkout: async (parent, context) => {
+      if (context.user) {
+        const userData = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: {
+              "workoutData.myWorkouts": {}
+            }
+          },
+          { new: true }
+        );
+        return userData;
+      }
+    },
   },
 };
 
