@@ -6,11 +6,17 @@ import {
   FormLabel,
   FormInput,
   SubmitButton,
+  VideoBackground,
+  RadioLabel,
+  RadioValue,
+  RadioInput,
+  FormInputGroupContainer,
 } from "../styled-components/LoginUpdatePage-Style";
 
 import { MUTATION_UPDATEPROFILE } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
+import updateVideo from "../assets/updateVideo.mp4";
 
 export default function LoginUpdate() {
   const loggedIn = Auth.loggedIn()
@@ -71,35 +77,160 @@ export default function LoginUpdate() {
 
   return (
     <LoginUpdateContainer>
+              <VideoBackground autoPlay loop muted>
+          <source src={updateVideo} type="video/mp4" />
+        </VideoBackground>
       <h2>Update Profile</h2>
       <LoginUpdateForm onSubmit={handleProfileData} noValidate validated={validated}>
         <FormInputGroup>
           <FormLabel htmlFor='weight'>What is Your Current Weight in Pounds</FormLabel>
           <FormInput type='number' id='weight' name='weight' onChange={handleChange} />
         </FormInputGroup>
-        <FormInputGroup>
-          <FormLabel htmlFor='activity'>What is Your New Activity level?</FormLabel>
-          <FormInput type='radio' id='activity' name='activity' value='little or no exercise' onChange={handleChange} />Little or no exercise
-            <FormInput type='radio' id='activity' name='activity' value='exercise 1-3 times per week' onChange={handleChange} />Exercise 1-3 times per week
-            <FormInput type='radio' id='activity' name='activity' value='exercise 4-5 times per week' onChange={handleChange} />Exercise 4-5 times per week
-            <FormInput type='radio' id='activity' name='activity' value='daily exercise or intense exercise 3-4 times per week' onChange={handleChange} />Daily exercise of intense exercise 3-4 times per week
-            <FormInput type='radio' id='activity' name='activity' value='intense exercise 6-7 times per week' onChange={handleChange} />Intense exercise 3-4 times per week
-            <FormInput type='radio' id='activity' name='activity' value='very intense exercise daily or physical job' onChange={handleChange} />Very intense exercise daily or physical job
-        </FormInputGroup>
+        {/* activty */}
+        <FormInputGroupContainer>
+            <FormInputGroup>
+              <FormLabel htmlFor='activity'>What is Your New Activity Level? </FormLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity1'
+                  name='activity'
+                  value='little or no exercise'
+                  onChange={handleChange}
+                />
+                <RadioValue>Little or no exercise</RadioValue>
+              </RadioLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity2'
+                  name='activity'
+                  value='exercise 1-3 times per week'
+                  onChange={handleChange}
+                />
+                <RadioValue>Exercise 1-3 times per week</RadioValue>
+              </RadioLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity3'
+                  name='activity'
+                  value='exercise 4-5 times per week'
+                  onChange={handleChange}
+                />
+                <RadioValue>Exercise 4-5 times per week</RadioValue>
+              </RadioLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity4'
+                  name='activity'
+                  value='daily exercise or intense exercise 3-4 times per week'
+                  onChange={handleChange}
+                />
+                <RadioValue>Daily exercise or intense exercise 3-4 times per week</RadioValue>
+              </RadioLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity5'
+                  name='activity'
+                  value='intense exercise 6-7 times per week'
+                  onChange={handleChange}
+                />
+                <RadioValue>Intense exercise 6-7 times per week</RadioValue>
+              </RadioLabel>
+              <RadioLabel>
+                <RadioInput
+                  type='radio'
+                  id='activity6'
+                  name='activity'
+                  value='very intense exercise daily or physical job'
+                  onChange={handleChange}
+                />
+                <RadioValue>Very intense exercise daily or physical job</RadioValue>
+              </RadioLabel>
+            </FormInputGroup>
+          </FormInputGroupContainer>
+
         <FormInputGroup>
           <FormLabel htmlFor='diet'>What, if Any, Dietary Restrictions or Allergies Do You Have? </FormLabel>
           <FormInput type='text' id='diet' name='diet' onChange={handleChange} />
         </FormInputGroup>
+        {/* goals */}
         <FormInputGroup>
-          <FormLabel htmlFor='goal'>What is Your New Goal? </FormLabel>
-          <FormInput type='radio' id='goal' name='goal' value='maintain weight' onChange={handleChange} />Maintain Weight
-            <FormInput type='radio' id='goal' name='goal' value='mild weight loss of 1/2 lbs. per week' onChange={handleChange} />Mild weight loss of 1/2 lbs. per week
-            <FormInput type='radio' id='goal' name='goal' value='Weight loss of 1 lbs. per week' onChange={handleChange} />Weight loss of 1 lbs. per week
-            <FormInput type='radio' id='goal' name='goal' value='extreme weight loss of 2 lbs. per week' onChange={handleChange} />Extreme weight loss of 2 lbs. per week
-            <FormInput type='radio' id='goal' name='goal' value='mild weight gain of 1/2 lbs. per week' onChange={handleChange} />Mild weight gain of 1/2 lbs. per week
-            <FormInput type='radio' id='goal' name='goal' value='Weight gain of 1 lbs. per week' onChange={handleChange} />Weight gain of 1 lbs. per week
-            <FormInput type='radio' id='goal' name='goal' value='extreme weight gain of 2 lbs. per week' onChange={handleChange} />Extreme weight gain of 2 lbs. per week
-        </FormInputGroup>
+              <FormLabel htmlFor='goal'>What is Your New Goal?</FormLabel>
+              <RadioLabel>
+                <RadioValue>Maintain Weight</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal1'
+                  name='goal'
+                  value='maintain weight'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Mild weight loss of 1/2 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal2'
+                  name='goal'
+                  value='mild weight loss of 1/2 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Weight loss of 1 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal3'
+                  name='goal'
+                  value='Weight loss of 1 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Extreme weight loss of 2 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal4'
+                  name='goal'
+                  value='extreme weight loss of 2 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Mild weight gain of 1/2 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal5'
+                  name='goal'
+                  value='mild weight gain of 1/2 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Weight gain of 1 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal6'
+                  name='goal'
+                  value='Weight gain of 1 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+              <RadioLabel>
+                <RadioValue>Extreme weight gain of 2 lbs. per week</RadioValue>
+                <RadioInput
+                  type='radio'
+                  id='goal7'
+                  name='goal'
+                  value='extreme weight gain of 2 lbs. per week'
+                  onChange={handleChange}
+                />
+              </RadioLabel>
+            </FormInputGroup>
         <SubmitButton type='submit' value='Submit' />
         {showError ? (
           <h4 style={{ color: "red" }}>
