@@ -112,3 +112,42 @@ mutation addWorkout($workout: String!) {
   }
 }
 `;
+
+export const MUTATION_DELETEMACROS = gql`
+mutation deleteMacros {
+  deleteMacros {
+    _id
+    username
+    email
+    macrosData {
+      myMacros
+    }
+  }
+}
+`;
+
+export const MUTATION_DELETEMEALPLAN = gql`
+mutation deleteMealPlan {
+  deleteMealPlan {
+    _id
+    username
+    email
+    mealPlanData {
+      myMealPlans
+    }
+  }
+}
+`;
+
+export const MUTATION_DELETEWORKOUT = gql`
+mutation deleteWorkout {
+  deleteWorkout {
+    _id
+    username
+    email
+    workoutData {
+      myWorkouts
+    }
+  }
+}
+`;
