@@ -66,11 +66,16 @@ type Query {
   me: User
 }
 
+type RequestId {
+  id: String
+}
+
 type Mutation {
   signUp(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addProfile(profileData: ProfileInput!): User
-  chat2(message: String!): Message
+  chat2(message: String!): RequestId
+  chat2Responder(requestId: String!): Message
   updateProfile(updateData: UpdateInput!): User
   addMacros(macros: String!): User
   addMealPlan(mealPlan: String!): User

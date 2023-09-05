@@ -78,7 +78,7 @@ export default function NutritionPage() {
         >
           <pre>
             <NutritionPageContainer>
-              <NutritionHeading>Nutrition Page</NutritionHeading>
+              <NutritionHeading>Customized Plans</NutritionHeading>
               <MacroButton2 />
               <MealPlanButton />
               <WorkoutButton />

@@ -5,7 +5,7 @@ import {
   CalculateButton2,
   MessageSection2,
 } from "../styled-components/MacroButton2-Style";
-import { MUTATION_CHAT2, MUTATION_ADDMACROS } from "../utils/mutations";
+import { MUTATION_CHAT2, MUTATION_ADDMACROS, MUTATION_CHAT2RESPONDER } from "../utils/mutations";
 import auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
 import loadingGif from "../assets/loading-gif.gif";
@@ -15,7 +15,8 @@ let myMacros;
 const MacroButton2 = (props) => {
   const [response, setResponse] = useState("");
 
-  const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+  const [chat2, { error }] = useMutation(MUTATION_CHAT2, { fetchPolicy: "no-cache" });
+  const [chat2Responder, { error: responderError }] = useMutation(MUTATION_CHAT2RESPONDER, { fetchPolicy: "no-cache" });
 
   const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
@@ -36,9 +37,30 @@ const MacroButton2 = (props) => {
         message: messagePrompt,
       },
     });
-    document.querySelector(".jw-modal").style.display = "none";
-    setResponse(data.chat2.messageBody);
-    myMacros = data.chat2.messageBody.split("---")[1];
+    const requestId = data.chat2.id;
+    let maxCount = 600000;
+    let count = 0;
+    const responseInterval = setInterval(async () => {
+      try {
+        if (count < maxCount) {
+          count += 10000;
+          const { data:response, error:responseError } = await chat2Responder({
+            variables: {
+              requestId: requestId,
+            },
+          });
+          if (!responseError) {
+            clearInterval(responseInterval);
+            document.querySelector(".jw-modal").style.display = "none";
+            setResponse(response.chat2Responder.messageBody);
+            myMacros = response.chat2Responder.messageBody.split("---")[1];
+          } 
+        } else {
+          clearInterval(responseInterval);
+        } 
+      } catch (err) {
+      }
+    }, 10000);    
   };
 
   const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);

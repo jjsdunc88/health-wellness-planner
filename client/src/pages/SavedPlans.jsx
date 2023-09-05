@@ -37,10 +37,11 @@ const SavedPlans = () => {
           </VideoBackground> */}
           <h1>Hello, {userData.username}</h1>
           <h2>Welcome Back!</h2>
-
-          {userData.macrosData.myMacros}
-          {userData.mealPlanData.myMealPlans}
-          {userData.workoutData.myWorkouts}
+            <pre>
+              {userData.macrosData.myMacros}
+              {userData.mealPlanData.myMealPlans}
+              {userData.workoutData.myWorkouts}
+            </pre>
         </div>
       )};
     </>

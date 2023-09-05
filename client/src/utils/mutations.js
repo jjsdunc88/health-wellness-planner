@@ -67,9 +67,9 @@ mutation Mutation($updateData: UpdateInput!) {
 `;
 
 export const MUTATION_CHAT2 = gql`
-mutation Chat2($message: String!) {
+mutation chat2($message: String!) {
   chat2(message: $message) {
-    messageBody
+    id
   }
 }
 `;
@@ -83,6 +83,15 @@ mutation addMacros($macros: String!) {
     macrosData {
       myMacros
     }
+  }
+}
+`;
+
+export const MUTATION_CHAT2RESPONDER = gql`
+mutation Chat2Responder($requestId: String!) {
+  chat2Responder(requestId: $requestId) {
+    _id
+    messageBody
   }
 }
 `;
