@@ -13,7 +13,7 @@ function Nav(props) {
           {props.loggedIn ? (
             <>
               <NavContainer>
-                <NavButton href="/nutrition">Nutrition Page</NavButton>
+                <NavButton href="/nutrition">Customized Plans</NavButton>
                 <NavButton href="/saved">Saved Plans</NavButton>
                 <NavButton href="/updateprofile">Update Profile</NavButton>
                 <button

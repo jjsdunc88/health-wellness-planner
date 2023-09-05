@@ -5,6 +5,11 @@ const OpenAI = require('openai');
 require('dotenv').config();
 const Auth = require("../utils/auth");
 
+const reqId = {};
+
+function getNewId() {
+  return 'req' + (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+};
 
 const isLoggedIn = (context) => {
   if (context && context.hasOwnProperty('user') && context.user.hasOwnProperty('_id')) {
@@ -90,6 +95,9 @@ const resolvers = {
       throw AuthenicationError;
     },
     chat2: async (parent, { message }) => {
+      console.log(openai.baseURL);
+      const requestedId = getNewId();
+      const responder = async () => {
       const chatCompletion = await openai.chat.completions.create({
         messages: [
           { "role": "system", "content": "I am your personal fitness, nutrition, and lifestyle coach. With your input, I will design workouts and meal plans based on your body type, lifestyle, and goals." },
@@ -101,8 +109,14 @@ const resolvers = {
         model: "gpt-4",
 
       })
+      // return {
+      //   messageBody: chatCompletion.choices[0].message.content
+      // }
+      reqId[requestedId] = {messageBody: chatCompletion.choices[0].message.content}
+    }
+      responder();
       return {
-        messageBody: chatCompletion.choices[0].message.content
+        id: requestedId
       }
     },
     addMacros: async (parent, { macros }, context) => {
@@ -189,7 +203,16 @@ const resolvers = {
         return userData;
       }
     },
+    chat2Responder: async (parent, { requestId }, context) => {   
+      let out = null;
+      if (context.user && reqId.hasOwnProperty(requestId)) {
+       out = reqId[requestId];
+      } else {
+        throw new Error('Not Yet Complete');
+      } 
+      return out;
   },
+},
 };
 
 module.exports = resolvers;

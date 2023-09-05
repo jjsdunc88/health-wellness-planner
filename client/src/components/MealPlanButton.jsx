@@ -6,7 +6,7 @@ import {
   CalculateMealPlanButton,
   MealPlanMessageSection,
 } from "../styled-components/MealPlanButton-Style";
-import { MUTATION_CHAT2, MUTATION_ADDMEALPLAN } from "../utils/mutations";
+import { MUTATION_CHAT2, MUTATION_ADDMEALPLAN, MUTATION_CHAT2RESPONDER } from "../utils/mutations";
 import auth from "../utils/auth";
 import loadingGif from "../assets/loading-gif.gif";
 import { QUERY_ME } from '../utils/queries';
@@ -16,7 +16,8 @@ let myMealPlans;
 const MealPlanButton = (props) => {
   const [response, setResponse] = useState("");
 
-  const [chat2, { error }] = useMutation(MUTATION_CHAT2);
+  const [chat2, { error }] = useMutation(MUTATION_CHAT2 , { fetchPolicy: "no-cache" });
+  const [chat2Responder, { error: responderError }] = useMutation(MUTATION_CHAT2RESPONDER, { fetchPolicy: "no-cache" });
 
   const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
@@ -37,10 +38,31 @@ const MealPlanButton = (props) => {
         message: messagePrompt,
       },
     });
-    document.querySelector(".jw-modal").style.display = "none";
-    setResponse(data.chat2.messageBody);
-    myMealPlans = data.chat2.messageBody;
-  };
+    const requestId = data.chat2.id;
+    let maxCount = 600000;
+    let count = 0;
+    const responseInterval = setInterval(async () => {
+      try {
+        if (count < maxCount) {
+          count += 10000;
+          const { data:response, error:responseError } = await chat2Responder({
+            variables: {
+              requestId: requestId,
+            },
+          });
+          if (!responseError) {
+            clearInterval(responseInterval);
+            document.querySelector(".jw-modal").style.display = "none";
+            setResponse(response.chat2Responder.messageBody);
+            myMealPlans = response.chat2Responder.messageBody;
+          }
+        } else {
+          clearInterval(responseInterval);
+        }
+      } catch (err) {
+      }
+  }, 10000);
+};
 
   const [mealPlans, setMealPlans] = useMutation(MUTATION_ADDMEALPLAN);
   const handleSave = async (event) => {
