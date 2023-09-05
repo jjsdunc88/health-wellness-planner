@@ -10,6 +10,9 @@ import auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
 import loadingGif from "../assets/loading-gif.gif";
 import SavedPlans from "../pages/SavedPlans"
+import { NavButton } from "../styled-components/Nav-Style";
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
 
 
 // Used to test the prompt
@@ -26,6 +29,7 @@ import SavedPlans from "../pages/SavedPlans"
 let myMacros;
 
 const MacroButton2 = (props) => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState("");
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
@@ -60,6 +64,7 @@ const MacroButton2 = (props) => {
   };
 
   const [macros, setMacros] = useMutation(MUTATION_ADDMACROS);
+  // const [displaySavedMacros, setDisplaySavedMacros] = useState(false)
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
@@ -72,6 +77,12 @@ const MacroButton2 = (props) => {
       },
     });
     console.log(data);
+    if(data) {
+      navigate('/saved', {state:data})
+    }
+    /**
+     * navigate('/to whatever page', {state:{da}})
+     */
   };
 
   return (
@@ -104,8 +115,16 @@ const MacroButton2 = (props) => {
             }}
           >
             {response}
-            <button onClick={handleSave} href="/saved">Save Macros</button>
+            <button onClick={handleSave} >Save Macros</button>
+            {/* <button  href="/saved">Save Macros</button> */}
+            
+            {/* {displaySavedMacros && 
+              <SavedPlans 
+                data={data}
+              />
+            } */}
           </pre>
+    
         ) : (
           <div
             id="modal-1"
@@ -143,7 +162,8 @@ const MacroButton2 = (props) => {
               </h1>
             </div>
           </div>
-        )}
+        )
+        }
       </section>
     </div>
   );
