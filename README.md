@@ -41,6 +41,7 @@ This application was created using MERN stack technologies: MongoDB, Express, Re
 Please click [here](https://health-wellness-intro-planner-15375fd8b435.herokuapp.com/) to see the application deployed on Heroku. 
 
   
+![Screenshot 2023-08-31 212201](https://github.com/jjsdunc88/health-wellness-planner/assets/125617546/1ccde5fd-6ad7-41b5-b7f2-de00fa989523)
 
 
 
