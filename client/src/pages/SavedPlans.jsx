@@ -31,13 +31,19 @@ const SavedPlans = () => {
   return (
     <>
       {userData && (
-        <div>
+        <div className="message">
           {/* <VideoBackground autoPlay loop muted>
             <source src={savedVideo} type="video/mp4" />
           </VideoBackground> */}
-          <h1>Hello, {userData.username}</h1>
-          <h2>Welcome Back!</h2>
-            <pre>
+          <h2>Welcome Back, {userData.username}!</h2>
+            <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              maxWidth: "900px",
+              margin: "0 auto",
+              fontFamily: "calibri",
+              }}
+            >
               {userData.macrosData.myMacros}
               {userData.mealPlanData.myMealPlans}
               {userData.workoutData.myWorkouts}
