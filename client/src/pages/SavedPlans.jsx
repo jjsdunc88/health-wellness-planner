@@ -1,5 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { VideoBackground } from "../styled-components/SavedPlans-Style";
+import savedVideo from '../assets/savedVideo.mp4';
 
 const  SavedPlans = () =>  {
     // const {state} = useLocation();
@@ -10,9 +12,14 @@ const  SavedPlans = () =>  {
     // const {email, macrosData, username} = addMacros
     
     return (
-        // <h1>hello, {username}</h1>
-        <h1> Welcome Back! </h1>
-
-    );
-};
-export default SavedPlans;
+        <div>
+            <VideoBackground autoPlay loop muted>
+        <source src={savedVideo} type="video/mp4" />
+      </VideoBackground>
+          {/* <h1>hello, {username}</h1> */}
+          <h1>Welcome Back!</h1>
+        </div>
+      );
+    };
+    
+    export default SavedPlans;
