@@ -56,7 +56,7 @@ export default function Login(props) {
       Auth.login(data.login.token);
       setShowSuccess(true);
       setLoggedIn(true);
-      navigate("/saved");
+      navigate("/updateprofile");
     } catch (err) {
       console.error(err);
       setShowError(true);
