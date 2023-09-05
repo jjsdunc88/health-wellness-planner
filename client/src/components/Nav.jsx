@@ -15,6 +15,7 @@ function Nav(props) {
               <NavContainer>
                 <NavButton href="/nutrition">Nutrition Page</NavButton>
                 <NavButton href="/saved">Saved Plans</NavButton>
+                <NavButton href="/updateprofile">Update Profile</NavButton>
                 <button
                   onClick={logout}
                   style={{
