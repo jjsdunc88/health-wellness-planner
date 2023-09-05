@@ -9,18 +9,6 @@ import { MUTATION_ADDWORKOUT, MUTATION_CHAT2 } from "../utils/mutations";
 import auth from "../utils/auth";
 import loadingGif from "../assets/loading-gif.gif";
 import { QUERY_ME } from '../utils/queries';
-import SavedPlans from "../pages/SavedPlans"
-
-// Used to test the prompt
-// const profileData = {
-//   'age': 25,
-//   'height': 72,
-//   'weight': 180,
-//   'gender': 'male',
-//   'activity': 'moderate',
-//   'goal': ' weight loss',
-//   'diet': 'no restrictions',
-// };
 
 let myWorkouts;
 
@@ -29,32 +17,27 @@ const WorkoutButton = (props) => {
 
   const [chat2, { error }] = useMutation(MUTATION_CHAT2);
 
-  const { loading, data:userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
+  const { loading, data: userData } = useQuery(QUERY_ME, { fetchPolicy: "no-cache" });
   const user = userData?.me || {};
-  console.log(user);
 
   const handleButtonClick = async (event) => {
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
-    
+
     let messagePrompt;
-      if (token) {
-        messagePrompt = `I am ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Please generate a daily workout routine based on my goals and current activity level. Please return as a bulleted list with recommended sets, reps, and exercises per day. Please include a recommended warm up and cool down. Please seperate each day with a new line indicated by a (---).`;
-      } else {
-        messagePrompt = `I am a new user and I would like to generate a daily workout routine based on my goals and current activity level.`;
-      }
+    if (token) {
+      messagePrompt = `I am ${user.profile[0].age} years old. I am a ${user.profile[0].gender} that weighs ${user.profile[0].weight} pounds and I am ${user.profile[0].height} inches tall. I have ${user.profile[0].diet} diet and I have a ${user.profile[0].activity} exercise level. This is my ${user.profile[0].goal}. Please generate a daily workout routine based on my goals and current activity level. Please return as a bulleted list with recommended sets, reps, and exercises per day. Please include a recommended warm up and cool down. Please seperate each day with a new line indicated by a (---).`;
+    } else {
+      messagePrompt = `I am a new user and I would like to generate a daily workout routine based on my goals and current activity level.`;
+    }
     event.preventDefault();
     document.querySelector(".jw-modal").style.display = "block";
-    const { data } = await chat2({      
+    const { data } = await chat2({
       variables: {
         message: messagePrompt,
       },
     });
-    // console.log(message);
-    // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
-    console.log(data.chat2.messageBody);
     myWorkouts = data.chat2.messageBody;
   };
 
@@ -62,14 +45,12 @@ const WorkoutButton = (props) => {
   const handleSave = async (event) => {
     event.preventDefault();
     const token = auth.loggedIn() ? auth.getToken() : null;
-    console.log(token);
-    
+
     const { data } = await workoutPlans({
       variables: {
         workout: myWorkouts,
       },
     });
-    console.log(data);
   };
 
 
@@ -146,6 +127,6 @@ const WorkoutButton = (props) => {
       </section>
     </div>
   );
-        };  
+};
 
 export default WorkoutButton;

@@ -44,7 +44,6 @@ export default function SignUp() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     setShowError(false);
     setShowSuccess(false);
 

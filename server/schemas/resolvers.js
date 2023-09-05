@@ -61,12 +61,12 @@ const resolvers = {
         );
 
         return user
+
       }
       throw AuthenicationError;
     },
     updateProfile: async (parent, { updateData }, context) => {
       if (context.user) {
-        console.log(updateData)
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
@@ -85,6 +85,7 @@ const resolvers = {
         );
 
         return user
+
       }
       throw AuthenicationError;
     },
