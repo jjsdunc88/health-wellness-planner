@@ -1,25 +1,32 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import { VideoBackground } from "../styled-components/SavedPlans-Style";
 import savedVideo from '../assets/savedVideo.mp4';
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
 
-const  SavedPlans = () =>  {
-    // const {state} = useLocation();
-    // console.log('state from saved plans --> ',state);
-    // // const {addMacros} = state;
-    // console.log('data from saved plans --->', addMacros);
+const SavedPlans = () => {
+  const { data, loading, error } = useQuery(QUERY_ME);
+  const userData = data?.me || {};
 
-    // const {email, macrosData, username} = addMacros
-    
-    return (
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  return (
+    <>
+      {userData && (
         <div>
-            <VideoBackground autoPlay loop muted>
-        <source src={savedVideo} type="video/mp4" />
-      </VideoBackground>
-          {/* <h1>hello, {username}</h1> */}
-          <h1>Welcome Back!</h1>
+          {/* <VideoBackground autoPlay loop muted>
+            <source src={savedVideo} type="video/mp4" />
+          </VideoBackground> */}
+          <h1>Hello, {userData.username}</h1>
+          <h2>Welcome Back!</h2>
+
+          {userData.macrosData.myMacros}
+          {userData.mealPlanData.myMealPlans}
+          {userData.workoutData.myWorkouts}
         </div>
-      );
-    };
-    
-    export default SavedPlans;
+      )};
+    </>
+  )
+};
+
+export default SavedPlans;

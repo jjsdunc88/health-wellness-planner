@@ -11,7 +11,7 @@ import { QUERY_ME } from "../utils/queries";
 import loadingGif from "../assets/loading-gif.gif";
 import SavedPlans from "../pages/SavedPlans"
 import { NavButton } from "../styled-components/Nav-Style";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 
 
@@ -59,7 +59,7 @@ const MacroButton2 = (props) => {
     // setResponse(JSON.stringify(data));
     document.querySelector(".jw-modal").style.display = "none";
     setResponse(data.chat2.messageBody);
-    console.log(data.chat2.messageBody.split("---")[1]);
+    console.log(data.chat2.messageBody);
     myMacros = data.chat2.messageBody.split("---")[1];
   };
 
@@ -76,13 +76,6 @@ const MacroButton2 = (props) => {
         macros: myMacros,
       },
     });
-    console.log(data);
-    if(data) {
-      navigate('/saved', {state:data})
-    }
-    /**
-     * navigate('/to whatever page', {state:{da}})
-     */
   };
 
   return (
@@ -116,15 +109,8 @@ const MacroButton2 = (props) => {
           >
             {response}
             <button onClick={handleSave} >Save Macros</button>
-            {/* <button  href="/saved">Save Macros</button> */}
-            
-            {/* {displaySavedMacros && 
-              <SavedPlans 
-                data={data}
-              />
-            } */}
           </pre>
-    
+
         ) : (
           <div
             id="modal-1"
