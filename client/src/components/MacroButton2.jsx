@@ -53,7 +53,7 @@ const MacroButton2 = (props) => {
             clearInterval(responseInterval);
             document.querySelector(".jw-modal").style.display = "none";
             setResponse(response.chat2Responder.messageBody);
-            myMacros = response.chat2Responder.messageBody.split("---")[1];
+            myMacros = response.chat2Responder.messageBody;
           } 
         } else {
           clearInterval(responseInterval);
