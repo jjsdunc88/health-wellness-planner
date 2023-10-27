@@ -12,21 +12,6 @@ const SavedPlans = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  // const [deleteMacros, {error}] = useMutation(MUTATION_DELETEMACROS);
-
-  // const handleDeleteMacros = async () => {
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //   if (!token) {
-  //     return false;
-  //   }
-
-  //   try {
-  //     const { data } = await deleteMacros();
-  //   } catch(err) {
-  //     console.error(err);
-  //   }
-  // }
   
   return (
     <>
